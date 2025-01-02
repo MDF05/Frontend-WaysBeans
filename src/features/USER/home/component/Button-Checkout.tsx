@@ -35,7 +35,7 @@ export default function ButtonCheckout(): React.ReactNode {
   setValue("products", [{ id: product?.id, name: product?.name, description: product?.description, price: product?.price, countItem: "1", images: "" }]);
 
   async function onCheckOut(event: any) {
-    event.stopPropagation();
+    // event.stopPropagation();
     try {
       await dispatch(getProfileByIdUserLogin());
       if (!stateProfile?.profile?.content?.profile?.address) {

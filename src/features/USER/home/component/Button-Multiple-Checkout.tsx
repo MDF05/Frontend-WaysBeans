@@ -47,7 +47,6 @@ export default function ButtonMultipleCheckout({ Product }: ButtonCheckoutProps)
 
   async function onCheckOut(event: any) {
     try {
-      alert("asu");
       const data = await dispatch(PostMidtransPayment(event)).unwrap();
 
       if (data.succes)
