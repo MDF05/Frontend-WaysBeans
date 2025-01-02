@@ -5,7 +5,7 @@ import { apiV1 } from "../../lib/api-v1";
 import { isAxiosError } from "axios";
 import { toast } from "react-toastify";
 
-export const GetCartAsync = createAsyncThunk<ResponseDTO<cartDTO>, void>("/get/cart", async (data, thunkAPI) => {
+export const GetCartAsync = createAsyncThunk<ResponseDTO<cartDTO>, void>("/get/cart", async (_, thunkAPI) => {
   try {
     const res = await apiV1.get(`/cart`);
     return res.data;

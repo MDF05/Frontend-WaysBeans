@@ -17,7 +17,7 @@ export const PostProductAsync = createAsyncThunk<ProductResponseDTO, FormData>("
   }
 });
 
-export const GetProductAsync = createAsyncThunk<ProductResponseDTO, void>("/product/get", async (data, thunkAPI) => {
+export const GetProductAsync = createAsyncThunk<ProductResponseDTO, void>("/product/get", async (_, thunkAPI) => {
   try {
     const res = await apiV1.get("/product");
     return thunkAPI.fulfillWithValue(res.data);

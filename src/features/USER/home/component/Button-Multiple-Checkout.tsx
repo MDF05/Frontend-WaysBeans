@@ -2,10 +2,8 @@ import { Box, Button } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { CheckOutSchema, checkoutSchema } from "../../../../schemas/checkout-schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TransactionDTO } from "../../../../DTO/transaction-DTO";
 import { PostMidtransPayment } from "./../../../../stores/checkout/async-checkout";
 import { cartCheckedDTO } from "../../../../DTO/cart-DTO";
-import { postTransactionAsync } from "../../../../stores/transaction/async-transaction";
 import { useAppDispatch, useAppSelector } from "../../../../stores/stores";
 
 declare global {

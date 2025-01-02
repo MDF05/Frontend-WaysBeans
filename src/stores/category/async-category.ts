@@ -19,7 +19,7 @@ export const CreateCategoryAsync = createAsyncThunk<CategoryResponseDTO, Categor
   }
 });
 
-export const GetCategoryAsync = createAsyncThunk<CategoryResponseDTO, void>("category/get", async (data, thunkAPI) => {
+export const GetCategoryAsync = createAsyncThunk<CategoryResponseDTO, void>("category/get", async (_, thunkAPI) => {
   try {
     const res: AxiosResponse<CategoryResponseDTO> = await apiV1.get(`/category`);
 

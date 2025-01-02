@@ -36,7 +36,7 @@ export const loginAsync = createAsyncThunk<LoginResponseDTO, LoginSchema>("auth/
   }
 });
 
-export const checkAuth = createAsyncThunk<CheckTokenDTO, string>("/checkAuth", async (data, thunkAPI) => {
+export const checkAuth = createAsyncThunk<CheckTokenDTO, void>("/checkAuth", async (_, thunkAPI) => {
   try {
     const token = localStorage.getItem("token");
 

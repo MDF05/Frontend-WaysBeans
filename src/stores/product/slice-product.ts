@@ -22,7 +22,7 @@ const productSlice = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(PostProductAsync.fulfilled, (state, action) => {
+      .addCase(PostProductAsync.fulfilled, (state) => {
         state.loading = false;
       })
       .addCase(PostProductAsync.pending, (state) => {

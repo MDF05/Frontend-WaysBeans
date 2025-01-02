@@ -1,4 +1,4 @@
-import { Flex, HStack, useDisclosure, VStack } from "@chakra-ui/react";
+import { HStack, useDisclosure, VStack } from "@chakra-ui/react";
 import CardProduct from "./Card-Product";
 import ModalDetailProduct from "./Modal-Detail-Product";
 import { useEffect, useState } from "react";

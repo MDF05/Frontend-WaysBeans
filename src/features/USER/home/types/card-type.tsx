@@ -1,4 +1,4 @@
-import { ProductDTO, ProductResponseDTO } from "../../../../DTO/product-DTO";
+import { ProductResponseDTO } from "../../../../DTO/product-DTO";
 
 export interface CardDetailTypes {
   id: string;
