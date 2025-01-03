@@ -5,6 +5,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { PostMidtransPayment } from "./../../../../stores/checkout/async-checkout";
 import { cartCheckedDTO } from "../../../../DTO/cart-DTO";
 import { useAppDispatch, useAppSelector } from "../../../../stores/stores";
+import { TransactionDTO } from "../../../../DTO/transaction-DTO";
+import { postTransactionAsync } from "../../../../stores/transaction/async-transaction";
 
 declare global {
   interface Window {
@@ -51,26 +53,27 @@ export default function ButtonMultipleCheckout({ Product }: ButtonCheckoutProps)
 
       if (data.succes)
         window.snap.pay(`${data.content.token}`, {
-          // onSuccess: (res: any) => {
-          //   const { fraud_status, gross_amount, order_id, payment_type, status_code, status_message, transaction_id, transaction_status, transaction_time } = res;
-          //   const dataTransaction: TransactionDTO[] = Product.map((data) => {
-          //     return {
-          //       fraud_status,
-          //       gross_amount,
-          //       order_id,
-          //       payment_type,
-          //       status_code,
-          //       status_message,
-          //       transaction_id,
-          //       transaction_status,
-          //       transaction_time,
-          //       countItem: data.countItem,
-          //       productId: data.product.id,
-          //       profileId: user.profile.content.profile.id,
-          //     };
-          //   });
-          //   dispatch(postTransactionAsync(dataTransaction));
-          // },
+          onSuccess: (res: any) => {
+            const { fraud_status, gross_amount, order_id, payment_type, status_code, status_message, transaction_id, transaction_status, transaction_time } = res;
+            const dataTransaction: TransactionDTO[] = Product.map((data) => {
+              return {
+                fraud_status,
+                gross_amount,
+                order_id,
+                payment_type,
+                status_code,
+                status_message,
+                transaction_id,
+                transaction_status,
+                transaction_time,
+                countItem: data.countItem,
+                productId: data.product.id,
+                profileId: user.profile.content.profile.id,
+                address: `${user?.profile?.content?.profile?.address}`,
+              };
+            });
+            dispatch(postTransactionAsync(dataTransaction));
+          },
           // onPending: (res: any) => {
           //   console.log("Pending", res);
           // },

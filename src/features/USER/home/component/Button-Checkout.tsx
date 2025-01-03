@@ -46,16 +46,24 @@ export default function ButtonCheckout(): React.ReactNode {
       if (data.succes)
         window.snap.pay(`${data.content.token}`, {
           onSuccess: (res: any) => {
-            console.log("Success", res);
+            const { fraud_status, gross_amount, order_id, payment_type, status_code, status_message, transaction_id, transaction_status, transaction_time } = res;
 
             const transactionDTO: TransactionDTO = {
               address: stateProfile?.profile?.content?.profile?.address ?? "",
               productId: product?.id,
-              transactionId: res.order_id,
-              paymentType: res.payment_type,
+              fraud_status,
+              gross_amount,
+              order_id,
+              payment_type,
+              status_code,
+              status_message,
+              transaction_id,
+              transaction_status,
+              transaction_time,
+              profileId: +(auth.user?.profile.id || 0),
             };
 
-            dispatch(postTransactionAsync(transactionDTO));
+            dispatch(postTransactionAsync([transactionDTO]));
           },
           // onPending: (res: any) => {
           //   console.log("Pending", res);

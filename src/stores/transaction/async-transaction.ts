@@ -17,7 +17,7 @@ export const getTransactionAsync = createAsyncThunk<ResponseDTO<TransactionDTO[]
   }
 });
 
-export const postTransactionAsync = createAsyncThunk<ResponseDTO<TransactionDTO>, TransactionDTO>("/postTransaction/byUserId", async (data, thunkApi) => {
+export const postTransactionAsync = createAsyncThunk<ResponseDTO<TransactionDTO>, TransactionDTO[]>("/postTransaction/byUserId", async (data, thunkApi) => {
   try {
     const res = await apiV1.post("/transaction", data);
     toast.success("Transaction is successfully, thank you for your transaction ");
