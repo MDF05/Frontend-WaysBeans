@@ -10,7 +10,7 @@ export default function useListCart() {
 
   const [products, setProducts] = useState<cartCheckedDTO[]>(product);
 
-  const isAllChecked = products.map((product) => product.checked).every(Boolean);
+  const isAllChecked = products.map((product) => product.checked).every(Boolean) && products.length > 0;
   const isIndeterminate = products.map((product) => product.checked).some(Boolean) && !isAllChecked;
 
   function onChangeAllCheckedBox(e: ChangeEvent<HTMLInputElement>) {

@@ -28,7 +28,7 @@ export default function Cart({ cart, products, index, setProducts, initialProduc
       <HStack width={"100%"}>
         <Image src={cart.product?.images[0]?.imageUrl ?? noImage} width={"200px"}></Image>
         <VStack width={"100%"} alignItems={"start"} ms={"20px"}>
-          <Text color={"brand.bgYoung"} fontSize={"xx-large"} textTransform={"capitalize"} fontWeight={"bold"}>
+          <Text color={"brand.bgYoung"} fontSize={"xx-large"} textTransform={"capitalize"} fontWeight={"bold"} w={"full"} display={"flex"} position={"relative"}>
             {cart.product.name}
           </Text>
           <HStack w={"100%"} justifyContent={"space-between"}>
