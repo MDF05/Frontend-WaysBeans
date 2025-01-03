@@ -4,7 +4,7 @@ import useListCart from "../hooks/use-list-cart";
 import Cart from "./Cart";
 import ModalCheckout from "./ModalCheckout";
 
-export default function ListCartUser(): React.ReactNode {
+export default function ListCartUser({ onClose }: { onClose?: () => void }): React.ReactNode {
   const { onChangeAllCheckedBox, isAllChecked, isIndeterminate, state, products, setProducts, initialProduct } = useListCart();
 
   return (
@@ -29,6 +29,7 @@ export default function ListCartUser(): React.ReactNode {
         products={products.filter((product) => {
           if (product.checked) return product;
         })}
+        onClose={onClose}
       ></ModalCheckout>
     </Grid>
   );

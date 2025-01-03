@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { GetCartAsync, PostCartAsync, PutCartAsyncByCartId } from "./async-cart";
+import { deleteManyCartByCartsIdAndUserIdAsync, GetCartAsync, PostCartAsync, PutCartAsyncByCartId } from "./async-cart";
 import { CartTypes } from "../../types/carts-types";
 
 interface initialStateCart {
@@ -18,6 +18,9 @@ const CartSlice = createSlice({
       state.countCartUser = action.payload.countCartUser;
       state.carts = action.payload.carts;
       state.loading = false;
+    },
+    removeCart(state, action: PayloadAction<number[]>) {
+      state.carts = state.carts.filter((c) => !action.payload.includes(c.product.id));
     },
   },
   extraReducers(builder) {
@@ -63,9 +66,19 @@ const CartSlice = createSlice({
       .addCase(PutCartAsyncByCartId.pending, (state) => {
         state.loading = true;
       });
+    builder
+      .addCase(deleteManyCartByCartsIdAndUserIdAsync.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteManyCartByCartsIdAndUserIdAsync.rejected, (state) => {
+        state.loading = false;
+      })
+      .addCase(deleteManyCartByCartsIdAndUserIdAsync.pending, (state) => {
+        state.loading = true;
+      });
   },
 });
 
-export const { setCart } = CartSlice.actions;
+export const { setCart, removeCart } = CartSlice.actions;
 
 export default CartSlice.reducer;

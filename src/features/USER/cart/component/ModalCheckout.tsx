@@ -2,7 +2,7 @@ import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/react";
 import { cartCheckedDTO } from "../../../../DTO/cart-DTO";
 import ButtonMultipleCheckout from "./../../home/component/Button-Multiple-Checkout";
 
-export default function ModalCheckout({ products }: { products: cartCheckedDTO[] }) {
+export default function ModalCheckout({ products, onClose }: { products: cartCheckedDTO[]; onClose?: () => void }) {
   const totalPrice = products.reduce((acc, cur) => acc + cur.countItem * parseInt(cur.product.price), 0);
 
   return (
@@ -44,7 +44,7 @@ export default function ModalCheckout({ products }: { products: cartCheckedDTO[]
           <Text size={"md"}>{totalPrice.toLocaleString("ID-id", { style: "currency", currency: "IDR" })}</Text>
         </Flex>
       </Box>
-      <ButtonMultipleCheckout Product={products}></ButtonMultipleCheckout>
+      <ButtonMultipleCheckout Product={products} onClose={onClose}></ButtonMultipleCheckout>
     </Flex>
   );
 }

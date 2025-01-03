@@ -47,9 +47,9 @@ export default function BaseLayout() {
               )}
 
               {user?.role == "USER" && (
-                <NavLink to="" color={pathname == "/" ? "brand.active" : "brand.baseColor"} gap={"5px"} onClick={onOpen}>
+                <ChakraLinkExtendReactRouterLink to="/" color={pathname == "/" ? "brand.active" : "brand.baseColor"} gap={"5px"} onClick={onOpen}>
                   <IconBadgeCart color={pathname == "/" ? "brand.active" : "brand.baseColor"}></IconBadgeCart>
-                </NavLink>
+                </ChakraLinkExtendReactRouterLink>
               )}
 
               <Menu>

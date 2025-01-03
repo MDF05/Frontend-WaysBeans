@@ -77,7 +77,7 @@ export default function ModalDetailProduct({ isOpen, onClose }: ModalDetailProdu
                 <Flex flexDirection={"column"} w={"full"} gap={"10px"}>
                   {stateUser.user?.role != "ADMIN" && (
                     <>
-                      <ButtonCheckout></ButtonCheckout>
+                      <ButtonCheckout onClose={onClose}></ButtonCheckout>
                       <ButtonAddCart productId={`${product?.id}`} />
                     </>
                   )}

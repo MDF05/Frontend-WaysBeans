@@ -42,3 +42,16 @@ export const PutCartAsyncByCartId = createAsyncThunk<ResponseDTO<cartTypes>, { c
     return thunkAPI.rejectWithValue("failed post data");
   }
 });
+
+export const deleteManyCartByCartsIdAndUserIdAsync = createAsyncThunk<ResponseDTO<cartTypes>, number[]>("/delete/many", async (data, thunkAPI) => {
+  try {
+    const res = await apiV1.delete(`/cart/many?productId=${data.toString()}`);
+    // toast.success("successfully updated cart");
+    return res.data;
+  } catch (error: unknown) {
+    if (isAxiosError(error)) {
+      toast.error(error?.response?.data.message);
+    } else toast.error(" add cart data failed, please try again");
+    return thunkAPI.rejectWithValue("failed post data");
+  }
+});

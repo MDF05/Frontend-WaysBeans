@@ -1,5 +1,3 @@
-import { ProductResponseDTO } from "../../../../DTO/product-DTO";
-
 export interface CardDetailTypes {
   id: string;
   image: string;
@@ -9,6 +7,5 @@ export interface CardDetailTypes {
 }
 
 export interface CardComponentTypes {
-  products: ProductResponseDTO;
   onOpen: () => void;
 }

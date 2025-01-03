@@ -48,7 +48,7 @@ export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
               padding={"20px 50px"}
             >
               <Grid w={"100%"} height={"calc(100vh - 50px - 80px)"} overflowY={"scroll"}>
-                <ListCartUser></ListCartUser>
+                <ListCartUser onClose={onClose}></ListCartUser>
               </Grid>
             </VStack>
           </Flex>

@@ -3,9 +3,12 @@ import React from "react";
 import { CardComponentTypes } from "../types/card-type";
 import nothingImage from "../../../../assets/image/no-image-gallery.png";
 import ChakraLinkExtendReactRouterLink from "../../../../components/Chakra-LInk-Extend-React-Router-Link";
+import { useAppSelector } from "../../../../stores/stores";
 
-export default function CardProduct({ products, onOpen }: CardComponentTypes): React.ReactNode {
-  return products.content.map((product, index: number) => {
+export default function CardProduct({ onOpen }: CardComponentTypes): React.ReactNode {
+  const state = useAppSelector((state) => state.products);
+
+  return [...(state?.products?.content ?? [])].reverse().map((product, index: number) => {
     return (
       <VStack bg={"brand.bgYoung"} alignItems={"start"} width={"20%"} height={"360px"} boxSizing="content-box" key={index}>
         <ChakraLinkExtendReactRouterLink onClick={onOpen} to={"/"} state={{ product }} width={"100%"} flexDirection={"column"}>
