@@ -9,7 +9,6 @@ import { TransactionDTO } from "../../../../DTO/transaction-DTO";
 import { postTransactionAsync } from "../../../../stores/transaction/async-transaction";
 import { GetProductAsync } from "../../../../stores/product/async-product";
 import { deleteManyCartByCartsIdAndUserIdAsync } from "../../../../stores/cart/async-cart";
-import { useLocation } from "react-router-dom";
 
 declare global {
   interface Window {
