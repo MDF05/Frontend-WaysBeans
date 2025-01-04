@@ -11,8 +11,8 @@ export default function ListCartUser({ onClose }: { onClose?: () => void }): Rea
     if (product.checked) return product;
   });
   return (
-    <Grid width={"100%"} pb={"100px"}>
-      <Flex textAlign={"end"} position={"fixed"} top={"90px"} right={"350px"} zIndex={"1000000"} gap={"10px"} alignContent={"center"} h={"50px"}>
+    <Grid width={"100%"} pb={"500px"} height={"100%"}>
+      <Flex textAlign={"end"} position={"fixed"} top={"80px"} right={{ base: "10%", md: "10%", lg: "28%" }} zIndex={"1000000"} gap={"10px"} alignContent={"center"} h={"50px"}>
         {checkedCart.length > 0 && <ButtonDeleteCart cart={checkedCart}>delete cart</ButtonDeleteCart>}
         <Flex gap={"5px"}>
           <FormLabel htmlFor="checkbox-all" color={"white"} fontSize={"30px"}>

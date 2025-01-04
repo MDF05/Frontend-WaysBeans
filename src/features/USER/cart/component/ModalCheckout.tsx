@@ -9,10 +9,10 @@ export default function ModalCheckout({ products, onClose }: { products: cartChe
     <Flex
       position={"fixed"}
       width={"250px"}
-      h={"calc(100% - 100px)"}
+      h={{ lg: "calc(100% - 100px)" }}
       bg={"brand.navbar"}
-      right={"30px"}
-      top={"80px"}
+      right={{ base: "10px", md: "30px" }}
+      bottom={{ base: "20px", md: "40px", lg: "0" }}
       px={"10px"}
       py={"10px"}
       flexDir={"column"}
