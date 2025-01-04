@@ -54,7 +54,7 @@ export default function ModalDetailProduct({ isOpen, onClose }: ModalDetailProdu
               gridTemplateColumns={{ base: "100%", md: `45% 45%` }}
               justifyContent={"space-between"}
               padding={"20px 50px"}
-              gap={{ base: "20px", md: "0px" }}
+              gap={{ base: "40px", md: "0px" }}
             >
               <Flex>
                 <Box as={AwesomeSlider} width={"100%"} height={"390px"}>
