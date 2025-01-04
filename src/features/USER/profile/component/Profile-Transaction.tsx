@@ -10,8 +10,8 @@ export default function ProfileTransaction({ transaction }: ProfileTransactionTy
   const subTotal = (item * Number(transaction?.product?.price)).toLocaleString("id-ID", { style: "currency", currency: "IDR" });
 
   return (
-    <HStack width={"100%"} display={"flex"} justify={"space-between"} bg={"brand.bgYoung"} p={"10px 50px 10px 20px"} color={"white"} rounded={"10px"}>
-      <HStack gap={"15px"} w={"full"}>
+    <HStack width={"100%"} display={"flex"} justify={"space-between"} bg={"brand.bgYoung"} p={"10px 50px 10px 20px"} color={"white"} rounded={"10px"} alignItems={"center"}>
+      <HStack gap={"15px"} w={"full"} display={"flex"} flexDirection={{ base: "column", md: "row" }}>
         <Image src={transaction?.product?.images[0]?.imageUrl ?? noImage} width={"150px"} height={"150px"}></Image>
         <VStack w={"full"}>
           <Box w={"full"}>

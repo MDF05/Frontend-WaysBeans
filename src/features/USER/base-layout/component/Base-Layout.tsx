@@ -34,7 +34,7 @@ export default function BaseLayout() {
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <NavLink to="/" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }}>
+              <NavLink to="/" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }} display={{ base: "none", md: "flex" }}>
                 Home
               </NavLink>
 
@@ -59,6 +59,11 @@ export default function BaseLayout() {
                 <MenuList alignItems={"center"}>
                   <MenuItemUser></MenuItemUser>
                   <MenuDivider />
+                  <MenuItem _hover={{ bg: "brand.bgYoung" }}>
+                    <ChakraLinkExtendReactRouterLink to="/" width={"100%"} display={"flex"} justifyContent={"start"} height={"100%"} _hover={{ bg: "brand.bgYoung" }}>
+                      Home
+                    </ChakraLinkExtendReactRouterLink>
+                  </MenuItem>
                   <MenuItem _hover={{ bg: "transparent" }} p={"0"} m={"0"}>
                     <ChakraLinkExtendReactRouterLink
                       to="/profile/me"
@@ -84,16 +89,37 @@ export default function BaseLayout() {
 
       {(pathname == "/" || pathname == "/admin") && (
         <Flex width={"100%"} justifyItems={"center"} justifyContent={"center"} bg={"brand.darkTheme"}>
-          <Flex width={"80%"} height={"500px"} bg={"brand.bgYoung"} position={"relative"}>
-            <Image src={bigLogo} transform={"scale(1)"} position={"absolute"} top={"120px"} left={"50px"}></Image>
-            <Text fontSize={"2rem"} color={"brand.default"} position={"absolute"} top={"260"} left={"50"}>
-              BEST QUALITY COFFEE BEANS
-            </Text>
-            <Text fontSize={"1.4rem"} color={"brand.default"} position={"absolute"} top={"360"} left={"50"} width={"500px"}>
-              Quality freshly roasted coffee made just for you. Pour, brew and enjoy
-            </Text>
-            <Image src={rectangle} zIndex={"2"} position={"absolute"} top={"120px"} right={"-50px"}></Image>
-            <Image src={waves} zIndex="1" position={"absolute"} bottom={"20px"} right={"50px"}></Image>
+          <Flex
+            width={{ base: "100%", lg: "80%" }}
+            height={{ base: "800px", md: "115vw", lg: "500px" }}
+            bg={"brand.bgYoung"}
+            position={"relative"}
+            flexDirection={"column"}
+            pt={"90px"}
+            gap={"20px"}
+            alignItems={{ base: "center", lg: "start" }}
+          >
+            <Image src={bigLogo} position={{ base: "static", lg: "absolute" }} top={"120px"} left={"50px"} w={{ base: "80%", lg: "50%" }}></Image>
+            <Box
+              display={"flex"}
+              flexDirection={"column"}
+              justifyContent={"center"}
+              width={{ base: "100%", md: "500px" }}
+              px={{ base: "20px", md: "0px" }}
+              position={{ base: "static", lg: "absolute" }}
+              top={"260"}
+              left={"50"}
+              mt={{ base: "0px", md: "10px" }}
+            >
+              <Text fontSize={"2rem"} color={"brand.default"}>
+                BEST QUALITY COFFEE BEANS
+              </Text>
+              <Text fontSize={"1.4rem"} color={"brand.default"}>
+                Quality freshly roasted coffee made just for you. Pour, brew and enjoy
+              </Text>
+            </Box>
+            <Image src={rectangle} zIndex={"2"} position={{ base: "static", lg: "absolute" }} top={"120px"} right={"-50px"} w={{ base: "90%", md: "60%", lg: "42%" }}></Image>
+            <Image src={waves} zIndex="1" position={{ base: "static", lg: "absolute" }} bottom={"20px"} right={"50px"} w={{ base: "80%", md: "50%", lg: "33%" }}></Image>
           </Flex>
         </Flex>
       )}
