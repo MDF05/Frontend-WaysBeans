@@ -10,7 +10,7 @@ export default function Profile(): React.ReactNode {
   const { transactions } = useProfile();
 
   return (
-    <Grid gridTemplateColumns={"55% 45%"} padding={"100px 50px"} h={"100%"}>
+    <Grid gridTemplateColumns={{ base: "100&", lg: "55% 45%" }} padding={{ base: "100px 10px", md: "100px 50px" }} h={"100%"} gap={{ base: "50px", md: "0px" }}>
       <ModalEditProfile isOpen={isOpen} onClose={onClose}></ModalEditProfile>
       <HStack>
         <VStack width={"100%"} alignItems={"start"} h={"100%"}>
@@ -24,7 +24,7 @@ export default function Profile(): React.ReactNode {
         <Text color={"brand.whiteColor"} textAlign={"start"} mb={"20px"}>
           <b>My Transaction</b>
         </Text>
-        <VStack overflow={"auto"} height={"70vh"}>
+        <VStack overflow={"auto"} height={"70vh"} width={"full"}>
           {transactions.length != 0 ? (
             transactions.map((trans) => {
               return <ProfileTransaction transaction={trans}></ProfileTransaction>;

@@ -10,7 +10,7 @@ export default function CardProduct({ onOpen }: CardComponentTypes): React.React
 
   return [...(state?.products?.content ?? [])].reverse().map((product, index: number) => {
     return (
-      <VStack bg={"brand.bgYoung"} alignItems={"start"} width={"20%"} height={"360px"} boxSizing="content-box" key={index}>
+      <VStack bg={"brand.bgYoung"} alignItems={"start"} width={{ base: "100%", md: "30%", lg: "20%" }} height={"360px"} boxSizing="content-box" key={index}>
         <ChakraLinkExtendReactRouterLink onClick={onOpen} to={"/"} state={{ product }} width={"100%"} flexDirection={"column"}>
           <Flex width={"100%"}>
             <Image src={product?.images[0]?.imageUrl ?? nothingImage} height={"250px"} width={"100%"}></Image>

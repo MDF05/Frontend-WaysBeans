@@ -7,7 +7,7 @@ export default function ProfileComponentData({ onOpen }: ProfileComponentDataTyp
   const { state } = useProfileComponentData();
 
   return (
-    <Grid gap={"20px"} width={"100%"} h={"100%"} templateColumns={"50% 50%"}>
+    <Grid gap={"20px"} width={"100%"} h={"100%"} templateColumns={{ base: "100%", md: "50% 50%" }}>
       <Grid width={"100%"} h={"100%"}>
         <Image src={state?.profile?.content?.profile?.imageUrl ?? profileImage} width={"100%"} h={"100%"}></Image>
       </Grid>
