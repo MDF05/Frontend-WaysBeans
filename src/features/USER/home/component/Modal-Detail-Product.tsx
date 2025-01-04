@@ -46,19 +46,19 @@ export default function ModalDetailProduct({ isOpen, onClose }: ModalDetailProdu
               <Box as={Tooltip} id="button-back-product" bgColor={"brand.active !"} />
             </Flex>
             <Grid
-              width={"80%"}
+              width={{ base: "100%", lg: "80%" }}
               bg={"brand.blur.background"}
               blur={"brand.blur.webkit"}
               border={"brand.blur.border"}
               backdropFilter={"brand.blur.backdrop"}
-              gridTemplateColumns={`45% 45%`}
+              gridTemplateColumns={{ base: "100%", md: `45% 45%` }}
               justifyContent={"space-between"}
               padding={"20px 50px"}
             >
               <Flex>
                 <Box as={AwesomeSlider} width={"100%"} height={"390px"}>
                   {product?.images?.map((image: ImageDTO, index: number) => {
-                    return <Image data-src={image.imageUrl ?? noImage} width={"100%"} key={index}></Image>;
+                    return <Image data-src={image?.imageUrl ?? noImage} width={"100%"} key={index}></Image>;
                   })}
                 </Box>
               </Flex>

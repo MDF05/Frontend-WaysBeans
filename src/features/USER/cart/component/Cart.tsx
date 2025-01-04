@@ -24,14 +24,14 @@ export default function Cart({ cart, products, index, setProducts, initialProduc
   const { onChangeCheckedBox, onChangeFieldNumber, onDecreaseItem, onIncreaseItem } = useCart({ products, setProducts });
 
   return (
-    <VStack width={"100%"} display={"flex"} justify={"space-between"} bg={"rgb(255,255,255,.2)"} p={"10px 50px 10px 20px"} key={index} mb={"20px"} rounded={"10px"}>
-      <HStack width={"100%"}>
-        <Image src={cart.product?.images[0]?.imageUrl ?? noImage} width={"200px"}></Image>
+    <VStack width={"100%"} display={"flex"} justify={"space-between"} bg={"rgb(255,255,255,.2)"} p={"10px 10px 10px 10px"} key={index} mb={"20px"} rounded={"10px"}>
+      <HStack width={"100%"} flexDirection={{ base: "column", md: "row" }}>
+        <Image src={cart.product?.images[0]?.imageUrl ?? noImage} width={{ base: "100%", md: "200px" }}></Image>
         <VStack width={"100%"} alignItems={"start"} ms={"20px"}>
           <Text color={"brand.bgYoung"} fontSize={"xx-large"} textTransform={"capitalize"} fontWeight={"bold"} w={"full"} display={"flex"} position={"relative"}>
             {cart.product.name}
           </Text>
-          <HStack w={"100%"} justifyContent={"space-between"}>
+          <HStack w={"100%"} justifyContent={"space-between"} pe={"30px"}>
             <Box>
               <Text color={"brand.active"}>{detailDatePost(cart.product.createdAt)}</Text>
               <Text color={"brand.darkColor"}>Price : {parseInt(cart.product.price).toLocaleString("id-ID", { style: "currency", currency: "IDR" })}</Text>

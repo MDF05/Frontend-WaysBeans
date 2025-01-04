@@ -15,11 +15,11 @@ export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
 
   return (
     <>
-      <Modal blockScrollOnMount={false} size={"full"} isOpen={isOpen} onClose={onClose}>
+      <Modal blockScrollOnMount={false} size={"full"} isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
         <ModalOverlay />
-        <ModalContent bg={"brand.darkTheme"} height={"100vh"} overflowY={"hidden"} color={"white"}>
+        <ModalContent bg={"brand.darkTheme"} color={"white"}>
           <Flex width={"100%"} alignItems={"left"} my={"80px"} direction={"column"}>
-            <Flex width={"80%"} gap={"20px"}>
+            <Flex width={"80%"} gap={"20px"} ps={"10px"} pb={{ base: "20px", md: "0px" }}>
               <Button
                 onClick={onClose}
                 border={"2px solid skyblue"}
@@ -31,23 +31,23 @@ export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
               >
                 <IoMdArrowBack />
               </Button>
-              <Text w={"full"} mb={"20px"} display={"flex"} alignItems={"center"} gap={"10px"} height={"100%"}>
+              <Text w={"full"} display={{ base: "none", md: "flex" }} alignItems={"center"} gap={"10px"} height={"100%"}>
                 <b>Your Cart</b>
                 <IconBadgeCart bg="white"></IconBadgeCart>
               </Text>
               <Box as={Tooltip} id="button-back-product" bgColor={"brand.active !"} />
             </Flex>
             <VStack
-              width={"80%"}
+              width={{ base: "100%", lg: "80%" }}
               bg={"brand.blur.background"}
               blur={"brand.blur.webkit"}
               border={"brand.blur.border"}
               backdropFilter={"brand.blur.backdrop"}
-              gridTemplateColumns={`45% 45%`}
               justifyContent={"space-between"}
-              padding={"20px 50px"}
+              padding={{ base: "0px 10px", md: "20px 50px" }}
+              h={"100%"}
             >
-              <Grid w={"100%"} height={"calc(100vh - 50px - 80px)"} overflowY={"scroll"}>
+              <Grid w={"100%"} overflowY={"scroll"} h={"calc(100vh - 100px)"}>
                 <ListCartUser onClose={onClose}></ListCartUser>
               </Grid>
             </VStack>
