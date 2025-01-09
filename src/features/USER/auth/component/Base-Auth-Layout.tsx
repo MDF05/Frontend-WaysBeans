@@ -19,7 +19,7 @@ export default function BaseAuthLayout(): React.ReactNode {
       justifyItems={"center"}
     >
       <Box bg={"brand.backgroundBlur"} width={"50%"}>
-        <ToastContainer autoClose={2000}></ToastContainer>
+        <ToastContainer autoClose={2000} limit={1}></ToastContainer>
         <Outlet />
       </Box>
     </Grid>

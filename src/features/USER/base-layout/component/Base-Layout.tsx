@@ -24,7 +24,7 @@ export default function BaseLayout() {
 
   return (
     <Grid>
-      <ToastContainer style={{ zIndex: 100000 }} autoClose={2000}></ToastContainer>
+      <ToastContainer style={{ zIndex: 100000 }} autoClose={2000} limit={1}></ToastContainer>
       <CartModal isOpen={isOpen} onClose={onClose}></CartModal>
       <Box bg={"brand.navbar"} px={4} zIndex={10000} position={"fixed"} width={"100%"}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
