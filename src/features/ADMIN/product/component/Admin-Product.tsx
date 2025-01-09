@@ -10,7 +10,7 @@ export default function AdminProduct(): React.ReactNode {
   dispatch(GetProductAsync());
 
   return (
-    <Grid gridTemplateColumns={"100%"} padding={"100px 50px"} height={"100vh"}>
+    <Grid gridTemplateColumns={"100%"} padding={"100px 50px"} height={"100vh"} overflow={"auto"}>
       <ModalPostProduct isOpen={isOpen} onClose={onClose} />
       <VStack width={"100%"} alignItems={"start"} h={"100%"}>
         <HStack justifyContent={"space-between"} width={"100%"}>

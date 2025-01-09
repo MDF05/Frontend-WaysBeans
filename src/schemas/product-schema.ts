@@ -6,7 +6,6 @@ export const productSchema = z.object({
   price: z.string(),
   quantity: z.string(),
   images: z.any().optional(),
-  category: z.string().optional(),
 });
 
 export type ProductSchema = z.infer<typeof productSchema>;
