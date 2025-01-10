@@ -31,6 +31,26 @@ const productSlice = createSlice({
 
       state.filterProduct = products;
     },
+    setMostStock(state) {
+      const data = state.products.content.sort((a, b) => parseInt(a.quantity) - parseInt(b.quantity));
+
+      state.filterProduct = data;
+    },
+    setSmallestStock(state) {
+      const data = state.products.content.sort((a, b) => parseInt(a.quantity) - parseInt(b.quantity));
+
+      state.filterProduct = data.reverse();
+    },
+    setNewsProduct(state) {
+      const data = state.products.content.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+
+      state.filterProduct = data;
+    },
+    setOldestProduct(state) {
+      const data = state.products.content.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+
+      state.filterProduct = data.reverse();
+    },
   },
   extraReducers(builder) {
     builder
@@ -77,5 +97,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { setProducts, setFilterProduct } = productSlice.actions;
+export const { setProducts, setFilterProduct, setMostStock, setSmallestStock, setNewsProduct, setOldestProduct } = productSlice.actions;
 export default productSlice.reducer;
