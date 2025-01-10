@@ -24,10 +24,12 @@ export default function useBaseLayout() {
       if (!token) return navigate("/login");
       else {
         const info: CheckTokenDTO = await dispatch(checkAuth()).unwrap();
-        await dispatch(getProfileByIdUserLogin());
-        await dispatch(GetCartAsync()).unwrap();
 
         if (info.token == "invalid") return navigate("/login");
+        else {
+          await dispatch(GetCartAsync()).unwrap();
+          await dispatch(getProfileByIdUserLogin());
+        }
       }
       if (state.user?.role === "ADMIN") return navigate("/admin");
     })();
