@@ -1,10 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductResponseDTO } from "../../DTO/product-DTO";
 import { DeleteProduct, GetProductAsync, PostProductAsync, PutProductAsync } from "./async-product";
+import { ProductDTO } from "./../../DTO/product-DTO";
 
 interface ProductState {
   loading: boolean;
   products: ProductResponseDTO;
+  filterProduct?: ProductDTO[] | null;
 }
 
 const initialState: ProductState = {
@@ -16,8 +18,18 @@ const productSlice = createSlice({
   name: "product",
   initialState: initialState,
   reducers: {
-    setProducts(state, action) {
-      state.products = action.payload;
+    setProducts(state, action: PayloadAction<ProductDTO[]>) {
+      state.products.content = action.payload;
+    },
+    setFilterProduct(state, action: PayloadAction<string | null>) {
+      let products;
+      if (action?.payload) {
+        products = (state.products.content ?? []).filter((product) => {
+          return product.name.toLowerCase().includes((action.payload ?? "").toLowerCase());
+        });
+      } else products = null;
+
+      state.filterProduct = products;
     },
   },
   extraReducers(builder) {
@@ -65,5 +77,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, setFilterProduct } = productSlice.actions;
 export default productSlice.reducer;

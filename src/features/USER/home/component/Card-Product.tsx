@@ -8,7 +8,7 @@ import { useAppSelector } from "../../../../stores/stores";
 export default function CardProduct({ onOpen }: CardComponentTypes): React.ReactNode {
   const state = useAppSelector((state) => state.products);
 
-  return [...(state?.products?.content ?? [])].reverse().map((product, index: number) => {
+  return [...(state.filterProduct ?? state?.products?.content ?? [])].reverse().map((product, index: number) => {
     return (
       <VStack bg={"brand.bgYoung"} alignItems={"start"} width={{ base: "100%", md: "30%", lg: "20%" }} height={"360px"} boxSizing="content-box" key={index}>
         <ChakraLinkExtendReactRouterLink onClick={onOpen} to={"/"} state={{ product }} width={"100%"} flexDirection={"column"}>

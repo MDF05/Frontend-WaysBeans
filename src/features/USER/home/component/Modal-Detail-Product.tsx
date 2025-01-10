@@ -51,7 +51,7 @@ export default function ModalDetailProduct({ isOpen, onClose }: ModalDetailProdu
               blur={"brand.blur.webkit"}
               border={"brand.blur.border"}
               backdropFilter={"brand.blur.backdrop"}
-              gridTemplateColumns={{ base: "100%", md: `45% 45%` }}
+              gridTemplateColumns={{ base: "100%", lg: `45% 45%` }}
               justifyContent={"space-between"}
               padding={"20px 50px"}
               gap={{ base: "40px", md: "0px" }}
