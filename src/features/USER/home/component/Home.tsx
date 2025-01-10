@@ -1,12 +1,11 @@
-import { HStack, useDisclosure, VStack } from "@chakra-ui/react";
+import { Box, HStack, Text, useDisclosure, VStack } from "@chakra-ui/react";
 import CardProduct from "./Card-Product";
 import ModalDetailProduct from "./Modal-Detail-Product";
 import { useAppDispatch } from "../../../../stores/stores";
 import { GetProductAsync } from "../../../../stores/product/async-product";
 import InputSearch from "./Input-Search";
-import ButtonMostStock from "./Button-Filter-Stock-Most-Stock";
-import ButtonSmallestStock from "./Button-Filter-Smallest-Stock";
-import ButtonNewstProduct from "./Button-Filter-Stock-Newest-Product";
+
+import InputFilterProduct from "./Input-Filter-Product";
 
 export default function Home(): React.ReactNode {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -17,10 +16,11 @@ export default function Home(): React.ReactNode {
     <VStack p={{ base: "20px", lg: "20px 50px" }} height={"100%"} width={"100%"}>
       <ModalDetailProduct isOpen={isOpen} onClose={onClose}></ModalDetailProduct>
       <InputSearch></InputSearch>
-      <HStack w={"85%"} mb={"20px"}>
-        <ButtonMostStock></ButtonMostStock>
-        <ButtonSmallestStock></ButtonSmallestStock>
-        <ButtonNewstProduct></ButtonNewstProduct>
+      <HStack w={"85%"} mb={"20px"} justifyContent={"end"}>
+        <Box>
+          <Text color={"white"}>Filter By :</Text>
+        </Box>
+        <InputFilterProduct></InputFilterProduct>
       </HStack>
       <HStack
         width={"100%"}

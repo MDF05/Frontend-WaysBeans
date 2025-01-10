@@ -7,6 +7,8 @@ import { useAppSelector } from "../../../../stores/stores";
 
 export default function CardProduct({ onOpen }: CardComponentTypes): React.ReactNode {
   const state = useAppSelector((state) => state.products);
+  console.log(state.filterProduct);
+  console.log(state.products.content, "products");
 
   return [...(state.filterProduct ?? state?.products?.content ?? [])].reverse().map((product, index: number) => {
     return (

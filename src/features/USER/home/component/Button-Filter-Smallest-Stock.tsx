@@ -9,5 +9,5 @@ export default function ButtonSmallestStock() {
     dispatch(setSmallestStock());
   }
 
-  return <Button onClick={onFilterNewestProduct}>Smallest stock</Button>;
+  return <Button onClick={onFilterNewestProduct}>Lowest stock</Button>;
 }

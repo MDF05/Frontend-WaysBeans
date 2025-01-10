@@ -1,13 +1,13 @@
 import { Button } from "@chakra-ui/react";
 import { useAppDispatch } from "../../../../stores/stores";
-import { setNewsProduct } from "../../../../stores/product/slice-product";
+import { setOldestProduct } from "../../../../stores/product/slice-product";
 
-export default function ButtonNewstProduct() {
+export default function ButtonOldestProduct() {
   const dispatch = useAppDispatch();
 
   function onFilterNewestProduct() {
-    dispatch(setNewsProduct());
+    dispatch(setOldestProduct());
   }
 
-  return <Button onClick={onFilterNewestProduct}>Newest Product</Button>;
+  return <Button onClick={onFilterNewestProduct}>Oldest Product</Button>;
 }
