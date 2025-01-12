@@ -57,7 +57,7 @@ export default function ModalDetailProduct({ isOpen, onClose }: ModalDetailProdu
               gap={{ base: "40px", md: "0px" }}
             >
               <Flex>
-                <Box as={AwesomeSlider} width={"100%"} height={{ base: "50vh" }}>
+                <Box as={AwesomeSlider} width={"100%"} height={{ base: "50vh", md: "70vh" }}>
                   {product?.images?.map((image: ImageDTO, index: number) => {
                     return <Image data-src={image?.imageUrl ?? noImage} width={"100%"} key={index}></Image>;
                   })}
