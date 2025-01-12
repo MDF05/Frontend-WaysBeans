@@ -24,7 +24,7 @@ export const getProfileById = createAsyncThunk<ProfileResponseDTO, { profileId: 
     return res.data;
   } catch (error: unknown) {
     if (isAxiosError(error)) {
-      toast.error(error?.response?.data.message);
+      toast.error("not authenticated, please login first");
     } else toast.error("get data failed, please try again");
     return thunkAPI.rejectWithValue("failed get data");
   }
