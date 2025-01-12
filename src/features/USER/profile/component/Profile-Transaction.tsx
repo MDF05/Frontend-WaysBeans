@@ -12,11 +12,7 @@ export default function ProfileTransaction({ transaction }: ProfileTransactionTy
   return (
     <HStack width={"100%"} display={"flex"} justify={"space-between"} bg={"brand.bgYoung"} p={"10px 10px 10px 10px"} color={"white"} rounded={"10px"} alignItems={"center"}>
       <HStack gap={"15px"} w={"full"} display={"flex"} flexDirection={{ base: "column", md: "row" }}>
-        <Image
-          src={transaction?.product?.images[0]?.imageUrl ?? noImage}
-          width={{ base: "100%", md: "350px", lg: "200px" }}
-          height={{ base: "70vw", md: "250px", lg: "200px" }}
-        ></Image>
+        <Image src={transaction?.product?.images[0]?.imageUrl ?? noImage} width={{ base: "100%", md: "50%", lg: "50%" }} height={{ base: "70vw", md: "35vw", lg: "20vw" }}></Image>
         <VStack w={"full"}>
           <Box w={"full"}>
             <Text color={"brand.active"} textTransform={"capitalize"}>
