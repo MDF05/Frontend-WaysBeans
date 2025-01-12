@@ -1,11 +1,13 @@
 import { Box, Grid } from "@chakra-ui/react";
 import { Navigate, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { useAppSelector } from "../../../../stores/stores";
 
 export default function BaseAuthLayout(): React.ReactNode {
   const token = localStorage.getItem("token");
+  const state = useAppSelector((state) => state.auth);
 
-  if (token) return <Navigate to={"/"}></Navigate>;
+  if (token && state?.user?.id) return <Navigate to={"/"}></Navigate>;
 
   return (
     <Grid bg={"black"} height={"100vh"} width={"100%"} color={"brand.color"} gridTemplateColumns={"100%"} alignItems={"center"} justifyItems={"center"}>
