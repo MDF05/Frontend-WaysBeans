@@ -33,10 +33,10 @@ export default function ModalEditProfile({ isOpen, onClose }: ModalEditProfilePr
         size={"xl"}
       >
         <ModalOverlay />
-        <ModalContent as={"form"} onSubmit={handleSubmit((event) => onSubmitEditProfile(event))}>
+        <ModalContent as={"form"} onSubmit={handleSubmit((event) => onSubmitEditProfile(event))} bg={"black"}>
           <ModalHeader>Edit Your Profile</ModalHeader>
           <ModalCloseButton />
-          <ModalBody pb={6} color={"brand.baseColor"} gap={"5px"} display={"grid"} gridTemplateColumns={"50% 50%"}>
+          <ModalBody pb={6} color={"white"} gap={"5px"} display={"grid"} gridTemplateColumns={{ base: "100%", lg: "50% 50%" }}>
             <Grid gap={"10px"}>
               <FormControl>
                 <FormLabel>Name</FormLabel>
