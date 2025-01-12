@@ -51,6 +51,16 @@ const productSlice = createSlice({
 
       state.filterProduct = data.reverse();
     },
+    setHighestPrice(state) {
+      const data = state.products.content.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+
+      state.filterProduct = data;
+    },
+    setLowestPrice(state) {
+      const data = state.products.content.sort((a, b) => parseInt(a.price) - parseInt(b.price));
+
+      state.filterProduct = data.reverse();
+    },
   },
   extraReducers(builder) {
     builder
@@ -97,5 +107,5 @@ const productSlice = createSlice({
   },
 });
 
-export const { setProducts, setFilterProduct, setMostStock, setSmallestStock, setNewsProduct, setOldestProduct } = productSlice.actions;
+export const { setProducts, setFilterProduct, setMostStock, setSmallestStock, setNewsProduct, setOldestProduct, setHighestPrice, setLowestPrice } = productSlice.actions;
 export default productSlice.reducer;
