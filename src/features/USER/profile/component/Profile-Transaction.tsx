@@ -14,8 +14,8 @@ export default function ProfileTransaction({ transaction }: ProfileTransactionTy
       <HStack gap={"15px"} w={"full"} display={"flex"} flexDirection={{ base: "column", md: "row" }}>
         <Image
           src={transaction?.product?.images[0]?.imageUrl ?? noImage}
-          width={{ base: "100%", md: "250px", lg: "250px" }}
-          height={{ base: "70vw", md: "250px", lg: "250px" }}
+          width={{ base: "100%", md: "250px", lg: "200px" }}
+          height={{ base: "70vw", md: "250px", lg: "200px" }}
         ></Image>
         <VStack w={"full"}>
           <Box w={"full"}>
