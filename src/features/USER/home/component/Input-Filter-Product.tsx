@@ -1,7 +1,7 @@
 import { Select } from "@chakra-ui/react";
 import { ChangeEvent } from "react";
 import { useAppDispatch } from "../../../../stores/stores";
-import { setFilterProduct, setHighestPrice, setMostStock, setNewsProduct, setOldestProduct, setSmallestStock } from "../../../../stores/product/slice-product";
+import { setFilterProduct, setHighestPrice, setLowestPrice, setMostStock, setNewsProduct, setOldestProduct, setSmallestStock } from "../../../../stores/product/slice-product";
 
 export default function InputFilterProduct() {
   const dispatch = useAppDispatch();
@@ -12,6 +12,7 @@ export default function InputFilterProduct() {
     else if (event.target.value == "newest") dispatch(setNewsProduct());
     else if (event.target.value == "oldest") dispatch(setOldestProduct());
     else if (event.target.value == "highest-price") dispatch(setHighestPrice());
+    else if (event.target.value == "lowest-price") dispatch(setLowestPrice());
     else {
       dispatch(setFilterProduct(null));
     }
