@@ -26,7 +26,7 @@ export default function Profile(): React.ReactNode {
         </Text>
         <VStack overflow={{ base: "visible", lg: "auto" }} height={{ base: "max-content", lg: "70vh" }} width={"full"}>
           {transactions.length != 0 ? (
-            transactions.map((trans) => {
+            [...transactions].reverse().map((trans) => {
               return <ProfileTransaction transaction={trans}></ProfileTransaction>;
             })
           ) : (
