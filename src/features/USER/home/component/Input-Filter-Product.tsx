@@ -26,7 +26,7 @@ export default function InputFilterProduct() {
       <option value="highest-stock">Highest Stock </option>
       <option value="lowest-stock">Lowest Stock </option>
       <option value="newest">Newest Product </option>
-      <option value="oldest">Lowest Product </option>
+      <option value="oldest">Oldest Product </option>
     </Select>
   );
 }
