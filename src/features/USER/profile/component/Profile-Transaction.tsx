@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import React from "react";
 import noImage from "../../../../assets/image/no-image-gallery.png";
 import { ProfileTransactionTypes } from "../types/profile-transaction-types";
@@ -11,10 +11,8 @@ export default function ProfileTransaction({ transaction }: ProfileTransactionTy
 
   return (
     <HStack width={"100%"} display={"flex"} justify={"space-between"} bg={"brand.bgYoung"} p={"10px 10px 10px 10px"} color={"white"} rounded={"10px"} alignItems={"center"}>
-      <HStack gap={"15px"} w={"full"} display={"flex"} flexDirection={{ base: "column", md: "row" }}>
-        <Flex width={"100%"}>
-          <Image src={transaction.product?.images[0]?.imageUrl ?? noImage} height={{ base: "70vw", md: "250px" }} width={"100%"}></Image>
-        </Flex>
+      <HStack gap={"15px"} w={"100%"} display={"flex"} flexDirection={{ base: "column", md: "row" }}>
+        <Image src={transaction?.product?.images[0]?.imageUrl ?? noImage} width={{ base: "100%", md: "50%", lg: "100%" }} height={{ base: "70vw", md: "35vw", lg: "20vw" }}></Image>
         <VStack w={"full"}>
           <Box w={"full"}>
             <Text color={"brand.active"} textTransform={"capitalize"}>
