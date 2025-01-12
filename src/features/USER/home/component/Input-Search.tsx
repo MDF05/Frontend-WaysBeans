@@ -19,7 +19,7 @@ export default function InputSearch() {
 
   return (
     <Grid width={"100%"} as={"form"} onSubmit={submitSearch} justifyItems={"center"}>
-      <Input w={{ base: "100%", lg: "85%" }} color={"white"} placeholder="search ...." onChange={(event) => setSearchText(event.target.value)}></Input>
+      <Input w={{ base: "100%", md: "9%", lg: "85%" }} color={"white"} placeholder="search ...." onChange={(event) => setSearchText(event.target.value)}></Input>
     </Grid>
   );
 }

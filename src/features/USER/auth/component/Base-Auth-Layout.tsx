@@ -1,13 +1,24 @@
 import { Box, Grid } from "@chakra-ui/react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import { useAppSelector } from "../../../../stores/stores";
+import { useAppDispatch } from "../../../../stores/stores";
+import { CheckTokenDTO } from "../../../../DTO/check-token-DTO";
+import { checkAuth } from "../../../../stores/auth/async";
 
 export default function BaseAuthLayout(): React.ReactNode {
   const token = localStorage.getItem("token");
-  const state = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  if (token && state?.user?.id) return <Navigate to={"/"}></Navigate>;
+  if (token) {
+    (async function () {
+      const info: CheckTokenDTO = await dispatch(checkAuth()).unwrap();
+
+      if (info?.token != "invalid") {
+        return navigate("/");
+      }
+    })();
+  }
 
   return (
     <Grid bg={"black"} height={"100vh"} width={"100%"} color={"brand.color"} gridTemplateColumns={"100%"} alignItems={"center"} justifyItems={"center"}>
