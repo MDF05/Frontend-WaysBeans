@@ -17,7 +17,7 @@ export default function Home(): React.ReactNode {
     <VStack p={{ base: "20px", lg: "20px 50px" }} height={"100%"} width={"100%"}>
       <ModalDetailProduct isOpen={isOpen} onClose={onClose}></ModalDetailProduct>
       <InputSearch></InputSearch>
-      <HStack w={"85%"} mb={"20px"} justifyContent={"end"}>
+      <HStack w={{ base: "100%", md: "95%", lg: "85%" }} mb={"20px"} justifyContent={"end"}>
         <Box>
           <Text color={"white"}>Filter By :</Text>
         </Box>

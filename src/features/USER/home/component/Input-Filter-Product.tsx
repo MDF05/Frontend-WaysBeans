@@ -19,7 +19,7 @@ export default function InputFilterProduct() {
   }
 
   return (
-    <Select width={"20%"} bg={"brand.dark"} onChange={onFilterProduct}>
+    <Select width={{ base: "50%", md: "50%", lg: "20%" }} bg={"brand.dark"} onChange={onFilterProduct}>
       <option value="default" selected>
         default
       </option>
