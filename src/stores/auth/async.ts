@@ -47,7 +47,7 @@ export const checkAuth = createAsyncThunk<CheckTokenDTO, void>("/checkAuth", asy
     const res = await apiV1.get("/check");
 
     if (!res.data.content) {
-      return thunkAPI.rejectWithValue("no user");
+      return thunkAPI.rejectWithValue("not authenticated");
     }
     return thunkAPI.fulfillWithValue(res.data.content);
   } catch (error: unknown) {

@@ -5,13 +5,14 @@ import { Tooltip } from "react-tooltip";
 import { ComponentModalPops } from "../../../../types/Component-Modal-Types";
 import IconBadgeCart from "./Icon-Badge-Cart";
 import ListCartUser from "./List-Cart-User";
-import { useAppDispatch } from "../../../../stores/stores";
+import { useAppDispatch, useAppSelector } from "../../../../stores/stores";
 import { GetCartAsync } from "../../../../stores/cart/async-cart";
 
 export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
   const dispatch = useAppDispatch();
+  const state = useAppSelector((state) => state.auth);
 
-  dispatch(GetCartAsync());
+  if (state?.user?.id) dispatch(GetCartAsync());
 
   return (
     <>

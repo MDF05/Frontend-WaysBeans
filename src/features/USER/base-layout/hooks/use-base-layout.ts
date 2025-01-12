@@ -26,7 +26,7 @@ export default function useBaseLayout() {
         const info: CheckTokenDTO = await dispatch(checkAuth()).unwrap();
 
         if (info.token == "invalid") return navigate("/login");
-        else {
+        else if (info.token) {
           await dispatch(GetCartAsync()).unwrap();
           await dispatch(getProfileByIdUserLogin());
         }

@@ -1,7 +1,7 @@
 import { Box, HStack, Text, useDisclosure, VStack } from "@chakra-ui/react";
 import CardProduct from "./Card-Product";
 import ModalDetailProduct from "./Modal-Detail-Product";
-import { useAppDispatch } from "../../../../stores/stores";
+import { useAppDispatch, useAppSelector } from "../../../../stores/stores";
 import { GetProductAsync } from "../../../../stores/product/async-product";
 import InputSearch from "./Input-Search";
 
@@ -10,7 +10,8 @@ import InputFilterProduct from "./Input-Filter-Product";
 export default function Home(): React.ReactNode {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const dispatch = useAppDispatch();
-  dispatch(GetProductAsync()).unwrap();
+  const state = useAppSelector((state) => state.auth);
+  if (state?.user?.id) dispatch(GetProductAsync()).unwrap();
 
   return (
     <VStack p={{ base: "20px", lg: "20px 50px" }} height={"100%"} width={"100%"}>
