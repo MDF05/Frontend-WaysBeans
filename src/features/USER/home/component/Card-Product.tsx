@@ -10,10 +10,10 @@ export default function CardProduct({ onOpen }: CardComponentTypes): React.React
 
   return [...(state.filterProduct ?? state?.products?.content ?? [])].reverse().map((product, index: number) => {
     return (
-      <VStack bg={"brand.bgYoung"} alignItems={"start"} width={{ base: "100%", md: "30%", lg: "20%" }} height={"360px"} boxSizing="content-box" key={index}>
+      <VStack bg={"brand.bgYoung"} alignItems={"start"} width={{ base: "100%", md: "30%", lg: "20%" }} boxSizing="content-box" key={index} pb={"20px"}>
         <ChakraLinkExtendReactRouterLink onClick={onOpen} to={"/"} state={{ product }} width={"100%"} flexDirection={"column"}>
           <Flex width={"100%"}>
-            <Image src={product?.images[0]?.imageUrl ?? nothingImage} height={"250px"} width={"100%"}></Image>
+            <Image src={product?.images[0]?.imageUrl ?? nothingImage} height={{ base: "70vw", md: "250px" }} width={"100%"}></Image>
           </Flex>
           <VStack px={"10px"} alignItems={"start"} w={"100%"} color={"black"} fontWeight={"bold"} justifyContent={"space-between"}>
             <Text color={"brand.fontProduct"} textTransform={"capitalize"} mt={"10px"} fontWeight={"bold"} fontSize={"large"}>

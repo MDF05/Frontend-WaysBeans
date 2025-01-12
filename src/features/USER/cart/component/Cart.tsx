@@ -26,7 +26,7 @@ export default function Cart({ cart, products, index, setProducts, initialProduc
   return (
     <VStack width={"100%"} display={"flex"} justify={"space-between"} bg={"rgb(255,255,255,.2)"} p={"10px 10px 10px 10px"} key={index} mb={"20px"} rounded={"10px"}>
       <HStack width={"100%"} flexDirection={{ base: "column", md: "row" }}>
-        <Image src={cart.product?.images[0]?.imageUrl ?? noImage} width={{ base: "100%", md: "200px" }}></Image>
+        <Image src={cart.product?.images[0]?.imageUrl ?? noImage} width={{ base: "100%", md: "200px" }} height={{ base: "70vw", md: "200px" }}></Image>
         <VStack width={"100%"} alignItems={"start"} ms={"20px"}>
           <Text color={"brand.bgYoung"} fontSize={"xx-large"} textTransform={"capitalize"} fontWeight={"bold"} w={"full"} display={"flex"} position={"relative"}>
             {cart.product.name}
