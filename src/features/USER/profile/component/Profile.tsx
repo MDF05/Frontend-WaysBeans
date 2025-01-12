@@ -24,7 +24,7 @@ export default function Profile(): React.ReactNode {
         <Text color={"brand.whiteColor"} textAlign={"start"} mb={"20px"}>
           <b>My Transaction</b>
         </Text>
-        <VStack overflow={{ base: "auto" }} height={"70vh"} width={"full"}>
+        <VStack overflow={{ base: "visible", lg: "auto" }} height={{ base: "max-content", lg: "70vh" }} width={"full"}>
           {transactions.length != 0 ? (
             transactions.map((trans) => {
               return <ProfileTransaction transaction={trans}></ProfileTransaction>;
