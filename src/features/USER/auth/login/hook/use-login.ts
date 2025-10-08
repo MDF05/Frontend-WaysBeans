@@ -17,7 +17,7 @@ export default function useLogin(): UseLoginTypes {
 
   const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
     const res: LoginResponseDTO = await dispatch(loginAsync(data)).unwrap();
-    dispatch(setCart({ countCartUser: res.content.user._count.cart, loading: false, carts: [] }));
+    dispatch(setCart({ countCartUser: res.content.user._count.cart, loading: false, carts: [], items: [] }));
 
     if (res.status)
       setTimeout(() => {

@@ -138,7 +138,6 @@ const FloatingCart: React.FC = () => {
                   fontSize="xs"
                   fontWeight="bold"
                   boxShadow="0 2px 8px rgba(220, 38, 38, 0.3)"
-                  
                 >
                   {cartCount > 99 ? "99+" : cartCount}
                 </Badge>
