@@ -14,7 +14,6 @@ import { useAppDispatch } from "../../../../stores/stores";
 import { setFilterProduct } from "../../../../stores/product/slice-product";
 
 const MotionBox = motion(Box);
-const MotionInput = motion(Input);
 
 const ModernSearch: React.FC = () => {
   const [searchText, setSearchText] = useState("");

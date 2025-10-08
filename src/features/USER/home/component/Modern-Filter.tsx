@@ -9,11 +9,10 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  IconButton,
   Badge,
 } from "@chakra-ui/react";
-import { FiFilter, FiChevronDown } from "react-icons/fi";
-import { motion, AnimatePresence } from "framer-motion";
+import {  FiChevronDown } from "react-icons/fi";
+import { motion } from "framer-motion";
 import { useAppDispatch } from "../../../../stores/stores";
 import {
   setFilterProduct,
@@ -27,7 +26,6 @@ import {
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
-const MotionHStack = motion(HStack);
 
 interface FilterOption {
   value: string;

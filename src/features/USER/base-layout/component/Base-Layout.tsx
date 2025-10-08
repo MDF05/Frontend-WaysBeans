@@ -1,11 +1,8 @@
 "use client";
 
-import { Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Stack, Image, Grid, useDisclosure, Text } from "@chakra-ui/react";
+import { Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Stack, Image, Grid, useDisclosure } from "@chakra-ui/react";
 
 import waysbeanslogo from "../../../../assets/image/Frame.png";
-import bigLogo from "../../../../assets/image/Icon.png";
-import rectangle from "../../../../assets/image/Rectangle 3.png";
-import waves from "../../../../assets/image/Waves.png";
 import avatarImage from "../../../../assets/image/profile.png";
 
 import NavLink from "./Nav-Link";
