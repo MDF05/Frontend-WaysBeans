@@ -1,16 +1,14 @@
 import React, { useRef } from "react";
-import { Box, BoxProps } from "@chakra-ui/react";
 import { motion, useInView } from "framer-motion";
 
-const MotionBox = motion(Box);
-
-interface ScrollRevealProps extends BoxProps {
+interface ScrollRevealProps {
   children: React.ReactNode;
   direction?: "up" | "down" | "left" | "right";
   delay?: number;
   duration?: number;
   distance?: number;
   className?: string;
+  
 }
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
@@ -20,7 +18,6 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   duration = 0.6,
   distance = 50,
   className,
-  ...boxProps
 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -54,15 +51,20 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   };
 
   return (
-    <Box 
-     as={MotionBox}
+    <motion.div
       ref={ref}
       initial={getInitialPosition()}
       animate={isInView ? getAnimatePosition() : getInitialPosition()}
-      transition={{ duration: duration as any, delay: delay as any, ease: [0.25, 0.46, 0.45, 0.94] as any }}
+      transition={{
+        duration: duration,
+        delay: delay,
+        ease: "easeOut",
+      }}
       className={className}
-      {...boxProps}
-    />
+      style={{width : "100%"}}
+    >
+      {children}
+    </motion.div>
   );
 };
 

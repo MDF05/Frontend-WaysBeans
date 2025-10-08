@@ -81,8 +81,8 @@ export default function Home(): React.ReactNode {
             </ScrollReveal>
 
             {/* Products Grid */}
-            <ScrollReveal direction="up" delay={0.6} style={{ width: "100%" }} >
-              <Box width="100%" bg={"green"} >
+            <ScrollReveal direction="up" delay={0.6}   >
+              <Box width="100%"  >
                 {displayProducts.length > 0 ? (
                   <Box
                     display="grid"
