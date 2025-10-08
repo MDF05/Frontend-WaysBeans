@@ -12,19 +12,19 @@ export default function TableProduct(): React.ReactNode {
   const state = useAppSelector((state) => state.products);
 
   return (
-    <TableContainer bg={"brand.darkTheme"} width={"100%"}>
+    <TableContainer bg={"brand.darkTheme"} width={"100%"} >
       <ModalEditProduct isOpen={isOpen} onClose={onClose}></ModalEditProduct>
       <Table color={"white"}>
         <TableCaption>Imperial to metric conversion factors</TableCaption>
-        <Thead borderBottom={"1.5px solid"} borderColor={"brand.baseColor"}>
-          <Tr textTransform={"capitalize"}>
-            <Th textAlign={"start"}>no</Th>
-            <Th>photo</Th>
-            <Th>Product Name</Th>
-            <Th>Product Desc</Th>
-            <Th>Price</Th>
-            <Th>qty</Th>
-            <Th>action</Th>
+        <Thead borderBottom={"1.5px solid"} borderColor={"brand.baseColor"} color={"white"}>
+          <Tr textTransform={"capitalize"} color={"white"}>
+            <Th textAlign={"start"} color={"white"}>no</Th>
+            <Th color={"white"}>photo</Th>
+            <Th color={"white"}>Product Name </Th>
+            <Th color={"white"}>Product Desc</Th>
+            <Th color={"white"}>Price</Th>
+            <Th color={"white"}>qty</Th>
+            <Th color={"white"}>action</Th>
           </Tr>
         </Thead>
         <Tbody>

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  Flex,
   Image,
   Text,
   VStack,
@@ -28,10 +27,11 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
   const [isHovered, setIsHovered] = useState(false);
   const [isLiked, setIsLiked] = useState(false);
 
-  const cardBg = useColorModeValue("white", "brand.darkTheme");
+  const cardBg = useColorModeValue("rgba(255,255,255,0.55)", "rgba(44,24,16,0.45)");
+  const borderGlass = useColorModeValue("rgba(255,255,255,0.35)", "rgba(255,255,255,0.18)");
   const shadowColor = useColorModeValue(
-    "rgba(139, 69, 19, 0.1)",
-    "rgba(139, 69, 19, 0.3)"
+    "rgba(60, 36, 20, 0.18)",
+    "rgba(0, 0, 0, 0.35)"
   );
 
   const formatPrice = (price: string) => {
@@ -50,10 +50,10 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
       onHoverEnd={() => setIsHovered(false)}
       position="relative"
       w={{ base: "280px", md: "320px" }}
-      h="400px"
+      h="420px"
       cursor="pointer"
     >
-      {/* Decorative Coffee Leaves */}
+      {/* Decorative Floating Leaf Accents */}
       <MotionBox
         position="absolute"
         top="-10px"
@@ -65,8 +65,8 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
         zIndex={1}
         animate={isHovered ? "hover" : "idle"}
         variants={{
-          idle: { rotate: 0, scale: 1 },
-          hover: { rotate: 15, scale: 1.1 },
+          idle: { rotate: 0, scale: 1, y: 0 },
+          hover: { rotate: 15, scale: 1.1, y: -6 },
         }}
         transition={{ duration: 0.3 }}
       />
@@ -82,49 +82,68 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
         zIndex={1}
         animate={isHovered ? "hover" : "idle"}
         variants={{
-          idle: { rotate: 0, scale: 1 },
-          hover: { rotate: -10, scale: 1.1 },
+          idle: { rotate: 0, scale: 1, y: 0 },
+          hover: { rotate: -10, scale: 1.1, y: -6 },
         }}
         transition={{ duration: 0.3, delay: 0.1 }}
       />
 
-      {/* Main Card Container - Coffee Bean Shape */}
+      {/* Main Card Container - Glassmorphism + organic rounded */}
       <MotionBox
         bg={cardBg}
-        borderRadius="50% 20% 50% 20%"
+        borderRadius="32px"
         p={6}
         h="100%"
-        boxShadow={`0 8px 32px ${shadowColor}`}
-        border="2px solid"
-        borderColor="brand.cappuccino"
+        boxShadow={`0 10px 30px ${shadowColor}`}
+        border="1px solid"
+        borderColor={borderGlass}
         position="relative"
         overflow="hidden"
+        style={{ backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }}
         animate={isHovered ? "hover" : "idle"}
         variants={{
           idle: { 
-            scale: 1, 
+            scale: 1,
             rotate: 0,
-            boxShadow: `0 8px 32px ${shadowColor}`,
+            boxShadow: `0 10px 30px ${shadowColor}`,
           },
           hover: { 
-            scale: 1.05, 
-            rotate: 2,
-            boxShadow: `0 16px 48px ${shadowColor}`,
+            scale: 1.02,
+            rotate: 0.6,
+            boxShadow: `0 18px 48px ${shadowColor}`,
           },
         }}
         transition={{ duration: 0.4, ease: "easeOut" }}
       >
-        {/* Inner border decoration */}
+        {/* Soft highlight blob */}
+        <Box
+          position="absolute"
+          top="-60px"
+          left="-60px"
+          width="180px"
+          height="180px"
+          borderRadius="50%"
+          // bgGradient="radial(brand.latte, transparent)"
+          bg="green"
+          opacity={0.35}
+          filter="blur(20px)"
+          pointerEvents="none"
+        />
+
+        {/* Inner subtle border */}
         <Box
           position="absolute"
           top="10%"
           left="10%"
           right="10%"
           bottom="10%"
-          borderRadius="50% 20% 50% 20%"
+          borderRadius="28px"
           border="1px solid"
           borderColor="brand.accent"
           opacity={0.3}
+          bg="brand.latte"
+          height={"100%"}
+
         />
         {/* Like Button */}
         <MotionButton
@@ -151,13 +170,13 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
           to="/"
           state={{ product }}
           display="block"
-          h="200px"
+          h="220px"
           mb={4}
         >
           <MotionBox
             position="relative"
-            h="200px"
-            borderRadius="50% 20% 50% 20%"
+            h="220px"
+            borderRadius="24px"
             overflow="hidden"
             bg="brand.latte"
             animate={isHovered ? "hover" : "idle"}
@@ -184,13 +203,13 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
               left={0}
               right={0}
               h="50%"
-              bgGradient="linear(to-t, blackAlpha.300, transparent)"
+              bgGradient="linear(to-t, blackAlpha.400, transparent)"
             />
           </MotionBox>
         </ChakraLinkExtendReactRouterLink>
 
         {/* Product Info */}
-        <VStack align="start" spacing={3} flex={1}>
+        <VStack align="center" spacing={3} flex={1}>
           <Text
             fontSize="lg"
             fontWeight="700"
@@ -203,7 +222,7 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
           </Text>
 
           <HStack justify="space-between" width="100%">
-            <VStack align="start" spacing={1}>
+            <VStack align="start" spacing={1}  w={"100%"} textAlign={"center"} alignItems={"center"}> 
               <Text
                 fontSize="xl"
                 fontWeight="800"
@@ -263,11 +282,7 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
             scale: [1, 1.1, 1],
             rotate: [0, 5, 0],
           }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" } as any}
         />
       </MotionBox>
     </MotionBox>
