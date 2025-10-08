@@ -53,9 +53,9 @@ const FloatingCart: React.FC = () => {
           height="60px"
           boxShadow={`0 8px 25px ${shadowColor}`}
           onClick={toggleColorMode}
+          _hover={{ bg: hoverBg }}
           whileHover={{ 
             scale: 1.1,
-            bg: hoverBg,
             boxShadow: `0 12px 35px ${shadowColor}`,
           }}
           whileTap={{ scale: 0.95 }}
@@ -96,9 +96,9 @@ const FloatingCart: React.FC = () => {
               // Open cart modal or navigate to cart page
               console.log("Open cart");
             }}
+            _hover={{ bg: hoverBg }}
             whileHover={{ 
               scale: 1.1,
-              bg: hoverBg,
               boxShadow: `0 12px 35px ${shadowColor}`,
             }}
             whileTap={{ scale: 0.95 }}
@@ -138,12 +138,7 @@ const FloatingCart: React.FC = () => {
                   fontSize="xs"
                   fontWeight="bold"
                   boxShadow="0 2px 8px rgba(220, 38, 38, 0.3)"
-                  animate={isHovered ? "pulse" : "idle"}
-                  variants={{
-                    idle: { scale: 1 },
-                    pulse: { scale: 1.2 },
-                  }}
-                  transition={{ duration: 0.2 }}
+                  
                 >
                   {cartCount > 99 ? "99+" : cartCount}
                 </Badge>

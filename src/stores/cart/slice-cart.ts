@@ -6,6 +6,7 @@ interface initialStateCart {
   countCartUser: number;
   carts: CartTypes[];
   loading: boolean;
+  items: CartTypes[];
 }
 
 const initialState: initialStateCart = {} as initialStateCart;

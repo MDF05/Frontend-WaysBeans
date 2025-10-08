@@ -132,7 +132,7 @@ const AnimatedFooter: React.FC = () => {
                     key={social.label}
                     whileHover={{ scale: 1.2, y: -2 }}
                     whileTap={{ scale: 0.9 }}
-                    transition="all 0.2s ease"
+                    transition={{ duration: 0.2, ease: "easeInOut" }}
                   >
                     <Link
                       href={social.href}

@@ -258,7 +258,7 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
               boxShadow: "0 8px 25px rgba(139, 69, 19, 0.3)",
             }}
             whileTap={{ scale: 0.98 }}
-            transition="all 0.2s ease"
+            transition={{ duration: 0.2, ease: "easeInOut" }}
             onClick={(e) => {
               e.preventDefault();
               // Add to cart logic here

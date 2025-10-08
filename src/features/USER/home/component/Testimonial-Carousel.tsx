@@ -320,7 +320,7 @@ const TestimonialCarousel: React.FC = () => {
                 }}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-                transition="all 0.2s ease"
+                transition={{ duration: 0.2, ease: "easeInOut" }}
               />
             ))}
           </HStack>
