@@ -87,7 +87,7 @@ export default function BaseLayout() {
         </Flex>
       </Box>
 
-      {(pathname == "/" || pathname == "/admin") && (
+      {/* {(pathname == "/" || pathname == "/admin") && (
         <Flex width={"100%"} justifyItems={"center"} justifyContent={"center"} bg={"brand.darkTheme"}>
           <Flex
             width={{ base: "100%", lg: "80%" }}
@@ -122,7 +122,7 @@ export default function BaseLayout() {
             <Image src={waves} zIndex="1" position={{ base: "static", lg: "absolute" }} bottom={"20px"} right={"50px"} w={{ base: "80%", md: "50%", lg: "33%" }}></Image>
           </Flex>
         </Flex>
-      )}
+      )} */}
 
       <Box bg={"brand.darkTheme"}>
         <Outlet></Outlet>
