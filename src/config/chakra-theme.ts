@@ -48,6 +48,7 @@ const BrandConfig: ThemeOverride = {
       },
     },
     Card: {
+      parts: ["container", "header", "body", "footer"],
       baseStyle: {
         container: {
           borderRadius: "2xl",

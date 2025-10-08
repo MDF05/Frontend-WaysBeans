@@ -130,10 +130,9 @@ const ModernFilter: React.FC = () => {
               onClick={() => handleFilterChange(option)}
               whileHover={{ 
                 scale: 1.05,
-                bg: selectedFilter === option.value ? "brand.espresso" : "brand.latte",
               }}
               whileTap={{ scale: 0.95 }}
-              transition="all 0.2s ease"
+              
             >
               {option.label}
             </MotionButton>
@@ -153,7 +152,7 @@ const ModernFilter: React.FC = () => {
               fontSize="sm"
               fontWeight="500"
               rightIcon={<FiChevronDown />}
-              whileHover={{ scale: 1.05, bg: "brand.latte" }}
+              whileHover={{ scale: 1.05, }}
               whileTap={{ scale: 0.95 }}
               transition="all 0.2s ease"
             >

@@ -37,11 +37,7 @@ export default function Register(): React.ReactNode {
     50% { transform: translateY(-10px) rotate(8deg); }
     100% { transform: translateY(0) rotate(0deg); }
   `;
-  const slowDrift = keyframes`
-    0% { transform: translateX(0); opacity: .35; }
-    50% { transform: translateX(10px); opacity: .5; }
-    100% { transform: translateX(0); opacity: .35; }
-  `;
+
 
   const [ripple, setRipple] = useState<{ x: number; y: number; ts: number } | null>(null);
 
