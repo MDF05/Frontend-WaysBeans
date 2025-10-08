@@ -36,8 +36,8 @@ export default function Home(): React.ReactNode {
       <HeroSection />
 
       {/* Products Section */}
-      <Box py={20} position="relative">
-        <Container maxW="7xl">
+      <Box py={20} position="relative" >
+        <Container maxW="7xl" >
           <VStack spacing={16}>
             {/* Section Header */}
             <ScrollReveal direction="up" delay={0.2}>
@@ -81,8 +81,8 @@ export default function Home(): React.ReactNode {
             </ScrollReveal>
 
             {/* Products Grid */}
-            <ScrollReveal direction="up" delay={0.6}>
-              <Box width="100%">
+            <ScrollReveal direction="up" delay={0.6} style={{ width: "100%" }} >
+              <Box width="100%" bg={"green"} >
                 {displayProducts.length > 0 ? (
                   <Box
                     display="grid"
