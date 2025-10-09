@@ -16,8 +16,6 @@ const MotionVStack = motion(VStack);
 
 
 const HeroSection: React.FC = () => {
-  const bgColor = useColorModeValue("brand.cream", "brand.darkTheme");
-  const cardBg = useColorModeValue("white", "brand.mocha");
   const textColor = useColorModeValue("brand.espresso", "brand.latte");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
