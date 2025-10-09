@@ -9,21 +9,21 @@ export default function ModalCheckout({ products, onClose }: { products: cartChe
     <Flex
       position={"fixed"}
       width={"250px"}
-      h={{ lg: "calc(100% - 100px)" }}
+      h={{ lg: "calc(100% - 10px)" }}
       bg={"brand.navbar"}
       right={{ base: "10px", md: "30px" }}
       bottom={{ base: "20px", md: "40px", lg: "0" }}
       px={"10px"}
       py={"10px"}
       flexDir={"column"}
-      alignItems={"end"}
-      justifyContent={"space-between"}
+      alignItems={"start"}
+      justifyContent={"end"}
       gap={"20px"}
       color={"brand.default"}
       zIndex={10000000}
       rounded={"10px"}
     >
-      <Box w={"full"}>
+      <Box w={"full"} >
         <VStack gap={"0pc"}>
           {products.map((product) => {
             return (

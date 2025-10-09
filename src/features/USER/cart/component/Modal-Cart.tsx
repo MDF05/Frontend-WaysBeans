@@ -16,10 +16,10 @@ export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
 
   return (
     <>
-      <Modal blockScrollOnMount={false} size={"full"} isOpen={isOpen} onClose={onClose} scrollBehavior="inside">
+      <Modal blockScrollOnMount={false} size={"full"} isOpen={isOpen} onClose={onClose} scrollBehavior="inside" >
         <ModalOverlay />
-        <ModalContent bg={"brand.darkTheme"} color={"white"}>
-          <Flex width={"100%"} alignItems={"left"} my={"80px"} direction={"column"}>
+        <ModalContent bg={"brand.latte"} _dark={{bg : "brand.darkTheme"}} color={"black"}>
+          <Flex width={"100%"} alignItems={"left"} py={"20px"} direction={"column"}>
             <Flex width={"80%"} gap={"20px"} ps={"10px"} pb={{ base: "20px", md: "0px" }}>
               <Button
                 onClick={onClose}
@@ -28,19 +28,22 @@ export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
                 data-tooltip-id="button-back-product"
                 data-tooltip-place="right"
                 data-tooltip-content="Back"
-                color={"brand.default"}
+                color={"black"}
+                _dark={{color : "white"}}
+
               >
                 <IoMdArrowBack />
               </Button>
-              <Text w={"full"} display={{ base: "none", md: "flex" }} alignItems={"center"} gap={"10px"} height={"100%"}>
+              <Text w={"full"} display={{ base: "none", md: "flex" }} alignItems={"center"} gap={"10px"} height={"100%"} _dark={{color : "white"}}>
                 <b>Your Cart</b>
                 <IconBadgeCart bg="white"></IconBadgeCart>
               </Text>
-              <Box as={Tooltip} id="button-back-product" bgColor={"brand.active !"} />
+              <Box as={Tooltip} id="button-back-product" bgColor={"brand.active"}  />
             </Flex>
             <VStack
               width={{ base: "100%", lg: "80%" }}
-              bg={"brand.blur.background"}
+              bg={"brand.cream"}
+              _dark={{bg : "brand.darkTheme"}}
               blur={"brand.blur.webkit"}
               border={"brand.blur.border"}
               backdropFilter={"brand.blur.backdrop"}
@@ -48,7 +51,7 @@ export default function CartModal({ isOpen, onClose }: ComponentModalPops) {
               padding={{ base: "0px 10px", md: "20px 50px" }}
               h={"100%"}
             >
-              <Grid w={"100%"} overflowY={"scroll"} h={"calc(100vh - 100px)"}>
+              <Grid w={"100%"} overflowY={"scroll"} h={"calc(100vh - 100px)"} >
                 <ListCartUser onClose={onClose}></ListCartUser>
               </Grid>
             </VStack>

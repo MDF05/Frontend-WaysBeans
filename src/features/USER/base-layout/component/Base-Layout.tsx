@@ -23,15 +23,15 @@ export default function BaseLayout() {
     <Grid>
       <ToastContainer style={{ zIndex: 100000 }} autoClose={2000} limit={1}></ToastContainer>
       <CartModal isOpen={isOpen} onClose={onClose}></CartModal>
-      <Box bg={"brand.navbar"} px={4} zIndex={10000} position={"fixed"} width={"100%"}>
+      <Box bg={"brand.navbar"} px={4} zIndex={1000} position={"fixed"} boxShadow = "2px 2px 5px grey"  width={"100%"} _dark={{bg : "brand.darkTheme",  boxShadow : "2px 2px 5px white"}}>
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Image src={waysbeanslogo} width={"150px"} dropShadow={"5px 5px 5px black"}></Image>
+            <Image src={waysbeanslogo} width={"150px"} dropShadow={"5px 5px 5px black"} ></Image>
           </Box>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <NavLink to="/" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }} display={{ base: "none", md: "flex" }}>
+              <NavLink to="#home" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }} display={{ base: "none", md: "flex" }}>
                 Home
               </NavLink>
 

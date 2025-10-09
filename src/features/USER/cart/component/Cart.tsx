@@ -24,11 +24,13 @@ export default function Cart({ cart, products, index, setProducts, initialProduc
   const { onChangeCheckedBox, onChangeFieldNumber, onDecreaseItem, onIncreaseItem } = useCart({ products, setProducts });
 
   return (
-    <VStack width={"100%"} display={"flex"} justify={"space-between"} bg={"rgb(255,255,255,.2)"} p={"10px 10px 10px 10px"} key={index} mb={"20px"} rounded={"10px"}>
-      <HStack width={"100%"} flexDirection={{ base: "column", md: "row" }}>
+    <VStack width={"100%"} display={"flex"} justify={"space-between"} bg={"rgba(244, 228, 188, 0.5)"} p={"10px 10px 10px 10px"} key={index} mb={"20px"} rounded={"10px"} 
+      _dark={{bg : "rgba(255,255,255,0.3)", boxShadow : "4px 4px 5px rgba(255,255,255, .5)" }} boxShadow={"2px 2px 5px 2px rgba(0,0,0,.3)"}
+    >
+      <HStack width={"100%"} flexDirection={{ base: "column", md: "row" }} >
         <Image src={cart.product?.images[0]?.imageUrl ?? noImage} width={{ base: "100%", md: "300px" }} height={{ base: "70vw", md: "200px" }}></Image>
         <VStack width={"100%"} alignItems={"start"} ms={"20px"}>
-          <Text color={"brand.bgYoung"} fontSize={"xx-large"} textTransform={"capitalize"} fontWeight={"bold"} w={"full"} display={"flex"} position={"relative"}>
+          <Text color={"brand.default"} _dark={{color : "brand.bgYoung"}}  fontSize={"xx-large"} textTransform={"capitalize"} fontWeight={"bold"} w={"full"} display={"flex"} position={"relative"}>
             {cart.product.name}
           </Text>
           <HStack w={"100%"} justifyContent={"space-between"} pe={"30px"}>
@@ -38,14 +40,34 @@ export default function Cart({ cart, products, index, setProducts, initialProduc
               <Text color={"brand.darkColor"}>stock : {parseInt(cart.product.quantity).toLocaleString("id-ID")}</Text>
             </Box>
             <Box textAlign={"end"}>
-              <Checkbox colorScheme="green" size={"lg"} isChecked={products[index].checked} onChange={() => onChangeCheckedBox(cart.product.id)} transform={"scale(2)"}></Checkbox>
+            <Checkbox colorScheme="green" size={"lg"} isChecked={products[index].checked} onChange={() => onChangeCheckedBox(cart.product.id)} transform={"scale(2)"}
+               sx={{
+                "& .chakra-checkbox__control": {
+                    boxShadow : "1px 1px 2px black ",
+                    borderColor: "red",
+      
+                  _checked: {
+                    bg: "#166534", // hijau tua (setara dengan tailwind's green-800)
+                    borderColor: "#166534",
+                    _hover: {
+                      bg: "#14532d", // sedikit lebih gelap saat hover
+                      borderColor: "#14532d",
+                    },
+                  },
+                  _hover: {
+                    borderColor: "#166534",
+                  },
+                },
+              }}
+              
+              ></Checkbox>
             </Box>
           </HStack>
           <Flex width={"100%"} mt={"20px"} gap={"10px"} justifyContent={"space-between"}>
             <Flex gap={"10px"} alignItems={"end"}>
-              <FormControl color={"white"}>
-                <FormLabel>Quantity</FormLabel>
-                <NumberInput max={Number(products[index].product.quantity)} min={1} w={"100px"} value={products[index].countItem}>
+              <FormControl color={"green"} _dark={{color : "lightGreen"}}>
+                <FormLabel color="brand.default" _dark={{color : "white"}}>Quantity</FormLabel>
+                <NumberInput max={Number(products[index].product.quantity)} min={1} w={"100px"} value={products[index].countItem} borderColor={"brand.default"} _dark={{borderColor : "brand.latte"}}>
                   <NumberInputField onChange={(event) => onChangeFieldNumber(event, index)} />
                   <NumberInputStepper>
                     <NumberIncrementStepper color={"lightgreen"} onClick={() => onIncreaseItem(index)} />
