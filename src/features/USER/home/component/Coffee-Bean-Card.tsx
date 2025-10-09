@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { FiShoppingCart, FiHeart } from "react-icons/fi";
 import ChakraLinkExtendReactRouterLink from "../../../../components/Chakra-LInk-Extend-React-Router-Link";
 import nothingImage from "../../../../assets/image/no-image-gallery.png";
+import ButtonAddCart from "./Button-Add-Cart";
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
@@ -120,14 +121,29 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
           position="absolute"
           top="-60px"
           left="-60px"
-          width="180px"
+          width="70%"
           height="180px"
           borderRadius="50%"
           // bgGradient="radial(brand.latte, transparent)"
           bg="green"
           opacity={0.35}
+          filter="blur(20px)" 
+          pointerEvents="none"
+        />
+        <Box
+          position="absolute"
+          top="-60px"
+          right="-60px"
+          width="70%"
+          height="180px"
+          borderRadius="50%"
+          bgGradient="radial(brand.latte, transparent)"
+          bg="brand.primary"
+          opacity={0.35}
           filter="blur(20px)"
           pointerEvents="none"
+          zIndex={"-1000"}
+
         />
 
         {/* Inner subtle border */}
@@ -259,12 +275,9 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
             }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            onClick={(e) => {
-              e.preventDefault();
-              // Add to cart logic here
-            }}
-          >
-            Add to Cart
+
+          >  
+            <ButtonAddCart productId={product.id}  ></ButtonAddCart>
           </MotionButton>
         </VStack>
 

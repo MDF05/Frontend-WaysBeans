@@ -7,6 +7,7 @@ import BaseAuthLayout from "../features/USER/auth/component/Base-Auth-Layout";
 import Login from "../features/USER/auth/login/component/Login";
 import Register from "../features/USER/auth/register/component/Register";
 import AdminProduct from "../features/ADMIN/product/component/Admin-Product";
+import AdminAnalytics from "../features/ADMIN/analytics/component/Admin-Analytics";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -16,6 +17,7 @@ export default function AppRouter() {
       children: [
         { path: "/admin", element: <Home></Home> },
         { path: "/admin/product", element: <AdminProduct></AdminProduct> },
+        { path: "/admin/analytics", element: <AdminAnalytics></AdminAnalytics> },
       ],
     },
     {

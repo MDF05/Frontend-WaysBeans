@@ -196,6 +196,8 @@ const HeroSection: React.FC = () => {
               w={{ base: "100%", sm: "auto" }}
             >
               <Button
+                as={"a"}
+                href="#coffee-product"
                 size="lg"
                 bg="brand.primary"
                 color="white"
@@ -218,6 +220,8 @@ const HeroSection: React.FC = () => {
               
               <Button
                 size="lg"
+                as={"a"}
+                href="#coffee-product"
                 variant="outline"
                 borderColor="brand.primary"
                 color="brand.primary"

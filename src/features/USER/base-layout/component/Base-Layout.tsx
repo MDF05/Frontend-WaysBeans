@@ -40,6 +40,9 @@ export default function BaseLayout() {
                   <NavLink to="/admin/product" color={pathname == "/product" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
                     Product
                   </NavLink>
+                  <NavLink to="/admin/analytics" color={pathname == "/admin/analytics" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
+                    Analytics
+                  </NavLink>
                 </>
               )}
 

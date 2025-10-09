@@ -70,7 +70,7 @@ export default function Login(): React.ReactNode {
         <VStack gap={"18px"} alignItems={"stretch"}>
           <Box>
             <Text fontSize={{ base: "1.8rem", md: "2rem" }} fontWeight={700} fontFamily={"Georgia, 'Times New Roman', serif"} letterSpacing={"0.3px"}>
-              Bubuk Coffee
+              WaysBeans - Bubuk Coffee Pilihan 
             </Text>
             <Text fontSize={{ base: "0.95rem", md: "1rem" }} color={"#5C3A21"}>
               Welcome back — please sign in
