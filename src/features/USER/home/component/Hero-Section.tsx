@@ -14,7 +14,11 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const MotionBox = motion(Box);
 const MotionVStack = motion(VStack);
 
+
 const HeroSection: React.FC = () => {
+  const bgColor = useColorModeValue("brand.cream", "brand.darkTheme");
+  const cardBg = useColorModeValue("white", "brand.mocha");
+  const textColor = useColorModeValue("brand.espresso", "brand.latte");
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -167,20 +171,20 @@ const HeroSection: React.FC = () => {
                 as="h1"
                 fontSize={{ base: "4xl", md: "5xl", lg: "6xl" }}
                 fontFamily="heading"
-                color="brand.espresso"
+                color={textColor}
                 textAlign={{ base: "center", lg: "left" }}
                 lineHeight="1.1"
                 maxW="600px"
               >
                 Discover the Art of{" "}
-                <Text as="span" color="brand.primary">
+                <Text as="span" color="brand.primary" _dark={{color : "brand.sage"}}>
                   Perfect Coffee
                 </Text>
               </Heading>
               
               <Text
                 fontSize={{ base: "lg", md: "xl" }}
-                color="brand.mocha"
+                color={textColor}
                 textAlign={{ base: "center", lg: "left" }}
                 maxW="500px"
                 lineHeight="1.6"
@@ -239,6 +243,7 @@ const HeroSection: React.FC = () => {
                   transform: "translateY(-1px)",
                 }}
                 transition="all 0.3s ease"
+                _dark={{color : "white"}}
               >
                 Explore Beans
               </Button>

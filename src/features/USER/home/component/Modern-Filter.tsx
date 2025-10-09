@@ -108,6 +108,7 @@ const ModernFilter: React.FC = () => {
           fontWeight="600"
           color="brand.espresso"
           display={{ base: "none", md: "block" }}
+          _dark={{color : "silver"}}
         >
           Filter by:
         </Text>
@@ -132,7 +133,7 @@ const ModernFilter: React.FC = () => {
                 scale: 1.05,
               }}
               whileTap={{ scale: 0.95 }}
-              
+              _dark={{color : "darkGrey"}}
             >
               {option.label}
             </MotionButton>
@@ -155,6 +156,7 @@ const ModernFilter: React.FC = () => {
               whileHover={{ scale: 1.05, }}
               whileTap={{ scale: 0.95 }}
               transition="all 0.2s ease"
+              _dark={{color : "white"}}
             >
               More
             </MenuButton>

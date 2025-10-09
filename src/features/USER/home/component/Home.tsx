@@ -48,6 +48,7 @@ export default function Home(): React.ReactNode {
                   fontWeight="600"
                   letterSpacing="2px"
                   textTransform="uppercase"
+                  _dark={{color : "brand.bgYoung"}}
                 >
                   Our Premium Collection
                 </Text>
@@ -57,6 +58,7 @@ export default function Home(): React.ReactNode {
                   fontFamily="heading"
                   color="brand.espresso"
                   textAlign="center"
+                  _dark={{color : "silver"}}
                 >
                   Discover Your Perfect Coffee
                 </Heading>
@@ -65,6 +67,7 @@ export default function Home(): React.ReactNode {
                   color="brand.mocha"
                   textAlign="center"
                   lineHeight="1.6"
+                  _dark={{color : "brand.sage"}}
                 >
                   Handpicked beans from the world's finest coffee regions, 
                   roasted to perfection for an exceptional experience.

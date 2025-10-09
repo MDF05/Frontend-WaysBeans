@@ -14,6 +14,7 @@ import { FiShoppingCart, FiHeart } from "react-icons/fi";
 import ChakraLinkExtendReactRouterLink from "../../../../components/Chakra-LInk-Extend-React-Router-Link";
 import nothingImage from "../../../../assets/image/no-image-gallery.png";
 import ButtonAddCart from "./Button-Add-Cart";
+import { FaPlus } from "react-icons/fa";
 
 const MotionBox = motion(Box);
 const MotionButton = motion(Button);
@@ -158,6 +159,7 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
           borderColor="brand.accent"
           opacity={0.3}
           bg="brand.latte"
+          _dark={{bg : "brand.mocha", opacity : "0.4"}}
           height={"100%"}
 
         />
@@ -233,6 +235,7 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
             textTransform="capitalize"
             noOfLines={2}
             lineHeight="1.2"
+            _dark={{color : "brand.latte"}}
           >
             {product.name}
           </Text>
@@ -243,6 +246,7 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
                 fontSize="xl"
                 fontWeight="800"
                 color="brand.primary"
+                _dark={{color : "brand.accent"}}
               >
                 {formatPrice(product.price)}
               </Text>
@@ -266,8 +270,10 @@ const CoffeeBeanCard: React.FC<CoffeeBeanCardProps> = ({ product, onOpen, index 
             size="md"
             fontWeight="600"
             leftIcon={<FiShoppingCart />}
+            rightIcon={<FaPlus /> }
             _hover={{
               bg: "brand.espresso",
+              
             }}
             whileHover={{ 
               scale: 1.02,

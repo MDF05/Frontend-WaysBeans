@@ -15,7 +15,7 @@ export default function ButtonAddCart({ productId }: { productId: string }): Rea
 
   return (
     <Flex as={"form"} width={"100%"} onSubmit={handleSubmit(() => onAddCart())}>
-      <Button bg={"brand.default"} color={"brand.whiteColor"} width={"100%"} type="submit" _hover={{ bg: "brand.bgYoung" }}>
+      <Button bg={"brand.default"} color={"brand.whiteColor"} width={"100%"} type="submit" _hover={{ bg: "brand.bgYoung", color: "black" }}>
         add to cart
         <Icon as={FaCartPlus} fontSize={"1.5em"}></Icon>
       </Button>
