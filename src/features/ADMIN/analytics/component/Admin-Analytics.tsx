@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Grid, GridItem, Heading, HStack, Select, Stat, StatHelpText, StatLabel, StatNumber,  Text, useColorModeValue, VStack, Spinner } from "@chakra-ui/react";
 import { adminApi } from "../../../../lib/api-v1";
 
@@ -11,9 +11,9 @@ interface DataPoint {
 
 function BarChart({ data, height = 160, accent = "#8B4513" }: { data: DataPoint[]; height?: number; accent?: string }) {
   const max = Math.max(...data.map(d => d.value), 1);
-  const barW = 100 / data.length;// Reserve space for text labels
-  const chartHeight = 100; // Reduced to make room for value labels above bars
-  const chartStartY = 10; // Start chart lower to make room for value labels
+  const barW = 120 / data.length + 2;// Reserve space for text labels
+  const chartHeight = 40; // Reduced to make room for value labels above bars
+  const chartStartY = 40; // Start chart lower to make room for value labels
   
   return (
     <Box as="svg" width="100%" height={height} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
@@ -59,9 +59,14 @@ export default function AdminAnalytics(): React.ReactNode {
   const [error, setError] = useState<string | null>(null);
   const [serverSeries, setServerSeries] = useState<DataPoint[]>([]);
   const [serverKpis, setServerKpis] = useState<{ totalSales: number; orders: number; avgOrder: number; growth: number }>({ totalSales: 0, orders: 0, avgOrder: 0, growth: 0 });
-  const [topProducts, setTopProducts] = useState<{ productId: number; qty: number }[]>([]);
+  const [topProducts, setTopProducts] = useState<{ name: string; qty: number }[]>([]);
+  const [hourly, setHourly] = useState<DataPoint[]>([]);
+  const [weekday, setWeekday] = useState<DataPoint[]>([]);
+  const [weekly8, setWeekly8] = useState<DataPoint[]>([]);
   const cardBg = useColorModeValue("rgba(255,255,255,0.6)", "rgba(44,24,16,0.5)");
   const borderCol = useColorModeValue("#E6D7C3", "#6F4E37");
+
+  
 
   useEffect(() => {
     let mounted = true;
@@ -75,6 +80,9 @@ export default function AdminAnalytics(): React.ReactNode {
         setServerSeries((content.series || []) as DataPoint[]);
         setServerKpis(content.kpis || { totalSales: 0, orders: 0, avgOrder: 0, growth: 0 });
         setTopProducts(content.topProducts || []);
+        setHourly((content.hourly || []) as DataPoint[]);
+        setWeekday((content.weekday || []) as DataPoint[]);
+        setWeekly8((content.weekly8 || []) as DataPoint[]);
       } catch (e) {
         if (!mounted) return;
         setError("Failed to load analytics");
@@ -144,7 +152,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
             <Stat>
               <StatLabel>Return Rate</StatLabel>
-              <StatNumber color="brand.espresso">{(Math.random()*3).toFixed(1)}%</StatNumber>
+              <StatNumber color="brand.espresso">{(0).toFixed(1)}%</StatNumber>
               <StatHelpText>Lower is better</StatHelpText>
             </Stat>
           </Box>
@@ -155,37 +163,23 @@ export default function AdminAnalytics(): React.ReactNode {
       <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
       <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)" >
         <Heading size="md" mb={2} color="brand.espresso">Sales Overview</Heading>
-        <BarChart data={serverSeries} height={500}  accent="#8B4513" />
+        <BarChart data={serverSeries} height={300}  accent="#8B4513" />
       </Box>
       <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
           <Heading size="sm" mb={2} color="brand.espresso">Top Products</Heading>
-          <BarChart data={topProducts.map((p, i) => ({ label: `${p.productId}`, value: p.qty }))} height={500} accent="#6F4E37" key={"chart-2"} />
+          <BarChart data={topProducts.map((p) => ({ label: p.name, value: p.qty }))} height= {300} accent="#6F4E37" key={"chart-2"} />
       </Box>
       <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
-          <Heading size="sm" mb={2} color="brand.espresso">Sales by Coffee Category</Heading>
-          <BarChart data={[{label:"Arabica",value:72},{label:"Robusta",value:41},{label:"Blend",value:58},{label:"Decaf",value:19}]} height={400} accent="#CD853F" />
+          <Heading size="sm" mb={2} color="brand.espresso">Hourly Sales</Heading>
+          <BarChart data={hourly} height={220} accent="#7B3F00" />
         </Box>
         <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
-          <Heading size="sm" mb={3} color="brand.espresso">Recent Coffee Powder Sales</Heading>
-          {/* simple mocked history list for quick insight */}
-          <VStack align="stretch" spacing={3}>
-            {[{id:1,date:"2025-10-09",product:"Arabica House Blend",qty:3,buyer:"user_01"},
-              {id:2,date:"2025-10-09",product:"Robusta Premium",qty:1,buyer:"user_15"},
-              {id:3,date:"2025-10-08",product:"Decaf Light Roast",qty:2,buyer:"user_27"},
-              {id:4,date:"2025-10-08",product:"Signature Espresso",qty:5,buyer:"user_04"}].map(item => (
-              <HStack key={item.id} justify="space-between" border="1px solid" borderColor={borderCol} borderRadius="md" p={2} bg={useColorModeValue("rgba(255,255,255,0.4)", "rgba(44,24,16,0.4)")}>
-                <VStack spacing={0} align="start">
-                  <Text fontWeight="600" color="brand.espresso">{item.product}</Text>
-                  <Text fontSize="sm" color="brand.mocha">{item.date}</Text>
-                </VStack>
-                <HStack>
-                  <Text color="brand.espresso">Qty: {item.qty}</Text>
-                  <Text color="brand.mocha">•</Text>
-                  <Text color="brand.mocha">{item.buyer}</Text>
-                </HStack>
-              </HStack>
-            ))}
-          </VStack>
+          <Heading size="sm" mb={2} color="brand.espresso">Weekday Sales</Heading>
+          <BarChart data={weekday} height={220} accent="#A0522D" />
+        </Box>
+        <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
+          <Heading size="sm" mb={2} color="brand.espresso">Last 8 Weeks</Heading>
+          <BarChart data={weekly8} height={220} accent="#B5651D" />
         </Box>
       </Grid>
     </VStack>
