@@ -25,6 +25,13 @@ export default function AdminSalesHistory(): React.ReactNode {
       qty: number;
       amount: number | string;
       buyerProfileId: number;
+      buyer?: {
+        id?: number;
+        name?: string;
+        email?: string;
+        phone?: string;
+        address?: string;
+      };
     }[]
   >([]);
   const cardBg = useColorModeValue(
@@ -123,6 +130,14 @@ export default function AdminSalesHistory(): React.ReactNode {
                 <Text color="brand.espresso">
                   IDR {Number(item.amount).toLocaleString("id-ID")}
                 </Text>
+                {item.buyer?.name && (
+                  <>
+                    <Text color="brand.mocha">•</Text>
+                    <Text color="brand.mocha">{item.buyer?.name}</Text>
+                    <Text color="brand.mocha">•</Text>
+                    <Text color="brand.mocha">{item.buyer?.email}</Text>
+                  </>
+                )}
               </HStack>
             </HStack>
           ))}
