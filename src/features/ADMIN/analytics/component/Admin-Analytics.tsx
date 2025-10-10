@@ -1,5 +1,6 @@
-import React, { useMemo, useState } from "react";
-import { Box, Grid, GridItem, Heading, HStack, Select, Stat, StatHelpText, StatLabel, StatNumber,  Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import React, { useEffect, useMemo, useState } from "react";
+import { Box, Grid, GridItem, Heading, HStack, Select, Stat, StatHelpText, StatLabel, StatNumber,  Text, useColorModeValue, VStack, Spinner } from "@chakra-ui/react";
+import { adminApi } from "../../../../lib/api-v1";
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
 
@@ -54,27 +55,39 @@ function BarChart({ data, height = 160, accent = "#8B4513" }: { data: DataPoint[
 
 export default function AdminAnalytics(): React.ReactNode {
   const [range, setRange] = useState<RangeKey>("daily");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [serverSeries, setServerSeries] = useState<DataPoint[]>([]);
+  const [serverKpis, setServerKpis] = useState<{ totalSales: number; orders: number; avgOrder: number; growth: number }>({ totalSales: 0, orders: 0, avgOrder: 0, growth: 0 });
+  const [topProducts, setTopProducts] = useState<{ productId: number; qty: number }[]>([]);
   const cardBg = useColorModeValue("rgba(255,255,255,0.6)", "rgba(44,24,16,0.5)");
   const borderCol = useColorModeValue("#E6D7C3", "#6F4E37");
 
-  const datasets = useMemo(() => {
-    return {
-      daily: Array.from({ length: 7 }).map((_, i) => ({ label: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"][i], value: Math.round(30 + Math.random() * 70) })),
-      weekly: Array.from({ length: 4 }).map((_, i) => ({ label: `W${i+1}`, value: Math.round(200 + Math.random() * 400) })),
-      monthly: Array.from({ length: 12 }).map((_, i) => ({ label: ["J","F","M","A","M","J","J","A","S","O","N","D"][i], value: Math.round(800 + Math.random() * 1200) })),
-      yearly: Array.from({ length: 5 }).map((_, i) => ({ label: `${2019 + i}`, value: Math.round(8000 + Math.random() * 6000) })),
-    } as Record<RangeKey, DataPoint[]>;
-  }, []);
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const res = await adminApi.getAnalytics(range);
+        const content = res?.content || res; // support successResponse wrapper
+        if (!mounted) return;
+        setServerSeries((content.series || []) as DataPoint[]);
+        setServerKpis(content.kpis || { totalSales: 0, orders: 0, avgOrder: 0, growth: 0 });
+        setTopProducts(content.topProducts || []);
+      } catch (e) {
+        if (!mounted) return;
+        setError("Failed to load analytics");
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
+    return () => {
+      mounted = false;
+    };
+  }, [range]);
 
-  const active = datasets[range];
-
-  const kpis = useMemo(() => {
-    const totalSales = active.reduce((a, b) => a + b.value, 0);
-    const orders = Math.round(totalSales / 2.7);
-    const avgOrder = orders ? totalSales / orders : 0;
-    const growth = Math.round((Math.random() * 20 - 5) * 10) / 10; // -5%..+15%
-    return { totalSales, orders, avgOrder, growth };
-  }, [active]);
+  const kpis = serverKpis;
 
   return (
     <VStack spacing={8} p={{ base: 4, md: 8 }} align="stretch">
@@ -90,6 +103,14 @@ export default function AdminAnalytics(): React.ReactNode {
           </Select>
         </HStack>
       </HStack>
+
+      {loading && (
+        <HStack>
+          <Spinner size="sm" />
+          <Text color="brand.mocha">Loading analytics…</Text>
+        </HStack>
+      )}
+      {error && <Text color="red.500">{error}</Text>}
 
       <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={4}>
         <GridItem>
@@ -134,11 +155,11 @@ export default function AdminAnalytics(): React.ReactNode {
       <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
       <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)" >
         <Heading size="md" mb={2} color="brand.espresso">Sales Overview</Heading>
-        <BarChart data={active} height={500}  accent="#8B4513" />
+        <BarChart data={serverSeries} height={500}  accent="#8B4513" />
       </Box>
       <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
           <Heading size="sm" mb={2} color="brand.espresso">Top Products</Heading>
-          <BarChart data={[{label:"A",value:56},{label:"B",value:44},{label:"C",value:38},{label:"D",value:22}]} height={500} accent="#6F4E37" key={"chart-2"} />
+          <BarChart data={topProducts.map((p, i) => ({ label: `${p.productId}`, value: p.qty }))} height={500} accent="#6F4E37" key={"chart-2"} />
       </Box>
       <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
           <Heading size="sm" mb={2} color="brand.espresso">Sales by Coffee Category</Heading>
