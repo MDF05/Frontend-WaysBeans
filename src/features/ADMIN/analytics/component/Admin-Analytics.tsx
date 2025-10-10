@@ -1,28 +1,50 @@
 import React, { useMemo, useState } from "react";
-import { Box, Grid, GridItem, Heading, HStack, Select, Stat, StatHelpText, StatLabel, StatNumber, Tab, TabList, TabPanel, TabPanels, Tabs, Text, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Heading, HStack, Select, Stat, StatHelpText, StatLabel, StatNumber,  Text, useColorModeValue, VStack } from "@chakra-ui/react";
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
 
 interface DataPoint {
   label: string;
   value: number;
-}
+} 
 
 function BarChart({ data, height = 160, accent = "#8B4513" }: { data: DataPoint[]; height?: number; accent?: string }) {
   const max = Math.max(...data.map(d => d.value), 1);
-  const barW = 100 / data.length;
+  const barW = 100 / data.length;// Reserve space for text labels
+  const chartHeight = 100; // Reduced to make room for value labels above bars
+  const chartStartY = 10; // Start chart lower to make room for value labels
+  
   return (
-    <Box as="svg" width="100%" height={height} viewBox={`0 0 100 ${height}`} preserveAspectRatio="none">
-      <rect x={0} y={0} width={100} height={height} fill="transparent" />
+    <Box as="svg" width="100%" height={height} viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+      <rect x={0} y={0} width={100} height={100} fill="transparent" />
       {data.map((d, i) => {
-        const h = (d.value / max) * (height - 24);
-        const x = i * barW + barW * 0.15;
-        const w = barW * 0.7;
-        const y = height - 18 - h;
+        const h = (d.value / max) * chartHeight;
+        const x = i * barW + barW * 0.1;
+        const w = barW * 0.8;
+        const y = chartStartY + chartHeight - h;
         return (
           <g key={d.label}>
-            <rect x={x} y={y} width={w} height={h} rx={2} fill={accent} opacity={0.85} />
-            <text x={x + w / 2} y={height - 6} textAnchor="middle" fontSize={3.2} fill="#6F4E37">{d.label}</text>
+            <rect x={x} y={y} width={w} height={h} rx={0.5} fill={accent} opacity={0.85} />
+            <text 
+              x={x + w / 2} 
+              y={chartStartY + chartHeight + 8} 
+              textAnchor="middle" 
+              fontSize={4.5} 
+              fill="#6F4E37"
+              fontWeight="500"
+            >
+              {d.label}
+            </text>
+            <text 
+              x={x + w / 2} 
+              y={y - 2} 
+              textAnchor="middle" 
+              fontSize={4} 
+              fill="#8B4513"
+              fontWeight="600"
+            >
+              {d.value}
+            </text>
           </g>
         );
       })}
@@ -75,7 +97,7 @@ export default function AdminAnalytics(): React.ReactNode {
             <Stat>
               <StatLabel>Total Sales</StatLabel>
               <StatNumber color="brand.primary">IDR {kpis.totalSales.toLocaleString("id-ID")}</StatNumber>
-              <StatHelpText color={kpis.growth >= 0 ? "green.500" : "red.400"}>{kpis.growth}% vs prev range</StatHelpText>
+              <StatHelpText color={kpis.growth >= 0 ? "green.900" : "red.700"}>{kpis.growth}% vs prev range</StatHelpText>
             </Stat>
           </Box>
         </GridItem>
@@ -108,19 +130,41 @@ export default function AdminAnalytics(): React.ReactNode {
         </GridItem>
       </Grid>
 
-      <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
-        <Heading size="md" mb={2} color="brand.espresso">Sales Overview</Heading>
-        <BarChart data={active} height={160} accent="#8B4513" />
-      </Box>
 
       <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
-        <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
+      <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)" >
+        <Heading size="md" mb={2} color="brand.espresso">Sales Overview</Heading>
+        <BarChart data={active} height={500}  accent="#8B4513" />
+      </Box>
+      <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
           <Heading size="sm" mb={2} color="brand.espresso">Top Products</Heading>
-          <BarChart data={[{label:"A",value:56},{label:"B",value:44},{label:"C",value:38},{label:"D",value:22}]} height={150} accent="#6F4E37" />
+          <BarChart data={[{label:"A",value:56},{label:"B",value:44},{label:"C",value:38},{label:"D",value:22}]} height={500} accent="#6F4E37" key={"chart-2"} />
+      </Box>
+      <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
+          <Heading size="sm" mb={2} color="brand.espresso">Sales by Coffee Category</Heading>
+          <BarChart data={[{label:"Arabica",value:72},{label:"Robusta",value:41},{label:"Blend",value:58},{label:"Decaf",value:19}]} height={400} accent="#CD853F" />
         </Box>
         <Box bg={cardBg} borderRadius="lg" border="1px solid" borderColor={borderCol} p={4} backdropFilter="blur(8px)">
-          <Heading size="sm" mb={2} color="brand.espresso">Sales by Coffee Category</Heading>
-          <BarChart data={[{label:"Arabica",value:72},{label:"Robusta",value:41},{label:"Blend",value:58},{label:"Decaf",value:19}]} height={150} accent="#CD853F" />
+          <Heading size="sm" mb={3} color="brand.espresso">Recent Coffee Powder Sales</Heading>
+          {/* simple mocked history list for quick insight */}
+          <VStack align="stretch" spacing={3}>
+            {[{id:1,date:"2025-10-09",product:"Arabica House Blend",qty:3,buyer:"user_01"},
+              {id:2,date:"2025-10-09",product:"Robusta Premium",qty:1,buyer:"user_15"},
+              {id:3,date:"2025-10-08",product:"Decaf Light Roast",qty:2,buyer:"user_27"},
+              {id:4,date:"2025-10-08",product:"Signature Espresso",qty:5,buyer:"user_04"}].map(item => (
+              <HStack key={item.id} justify="space-between" border="1px solid" borderColor={borderCol} borderRadius="md" p={2} bg={useColorModeValue("rgba(255,255,255,0.4)", "rgba(44,24,16,0.4)")}>
+                <VStack spacing={0} align="start">
+                  <Text fontWeight="600" color="brand.espresso">{item.product}</Text>
+                  <Text fontSize="sm" color="brand.mocha">{item.date}</Text>
+                </VStack>
+                <HStack>
+                  <Text color="brand.espresso">Qty: {item.qty}</Text>
+                  <Text color="brand.mocha">•</Text>
+                  <Text color="brand.mocha">{item.buyer}</Text>
+                </HStack>
+              </HStack>
+            ))}
+          </VStack>
         </Box>
       </Grid>
     </VStack>

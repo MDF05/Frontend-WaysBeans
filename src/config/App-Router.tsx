@@ -8,6 +8,7 @@ import Login from "../features/USER/auth/login/component/Login";
 import Register from "../features/USER/auth/register/component/Register";
 import AdminProduct from "../features/ADMIN/product/component/Admin-Product";
 import AdminAnalytics from "../features/ADMIN/analytics/component/Admin-Analytics";
+import AdminSalesHistory from "../features/ADMIN/analytics/component/Admin-Sales-History";
 
 export default function AppRouter() {
   const router = createBrowserRouter([
@@ -18,6 +19,7 @@ export default function AppRouter() {
         { path: "/admin", element: <Home></Home> },
         { path: "/admin/product", element: <AdminProduct></AdminProduct> },
         { path: "/admin/analytics", element: <AdminAnalytics></AdminAnalytics> },
+        { path: "/admin/history", element: <AdminSalesHistory></AdminSalesHistory> },
       ],
     },
     {

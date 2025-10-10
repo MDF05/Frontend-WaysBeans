@@ -41,6 +41,7 @@ const HeroSection: React.FC = () => {
       display="flex"
       alignItems="center"
       id="home"
+      paddingTop={{ base: "80px", lg: "0px" }}
     >
       {/* Animated Background Elements */}
       <Box position="absolute" top="0" left="0" width="100%" height="100%" overflow="hidden">

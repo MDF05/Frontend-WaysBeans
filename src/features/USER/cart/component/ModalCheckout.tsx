@@ -8,11 +8,11 @@ export default function ModalCheckout({ products, onClose }: { products: cartChe
   return (
     <Flex
       position={"fixed"}
-      width={"250px"}
-      h={{ lg: "calc(100% - 10px)" }}
+      width={"260px"}
+      h={{ lg: "calc(100% - 20px)" }}
       bg={"brand.navbar"}
       right={{ base: "10px", md: "30px" }}
-      bottom={{ base: "20px", md: "40px", lg: "0" }}
+      bottom={{ base: "20px", md: "40px", lg: "10px" }}
       px={"10px"}
       py={"10px"}
       flexDir={"column"}
@@ -22,6 +22,7 @@ export default function ModalCheckout({ products, onClose }: { products: cartChe
       color={"brand.default"}
       zIndex={10000000}
       rounded={"10px"}
+      boxShadow={"2px 2px 5px grey"}
     >
       <Box w={"full"} >
         <VStack gap={"0pc"}>

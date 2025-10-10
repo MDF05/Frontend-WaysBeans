@@ -31,17 +31,20 @@ export default function BaseLayout() {
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              <NavLink to="#home" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }} display={{ base: "none", md: "flex" }}>
+              {user?.role == "ADMIN" && (
+
+                <>
+          <NavLink to="/" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }} display={{ base: "none", md: "flex" }}>
                 Home
               </NavLink>
-
-              {user?.role == "ADMIN" && (
-                <>
                   <NavLink to="/admin/product" color={pathname == "/product" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
                     Product
                   </NavLink>
                   <NavLink to="/admin/analytics" color={pathname == "/admin/analytics" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
                     Analytics
+                  </NavLink>
+                  <NavLink to="/admin/history" color={pathname == "/admin/history" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
+                    History
                   </NavLink>
                 </>
               )}

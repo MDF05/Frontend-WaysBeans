@@ -1,14 +1,14 @@
-import { Box, useColorModeValue } from "@chakra-ui/react";
+import {  useColorModeValue } from "@chakra-ui/react";
 import { NavLinkProps } from "./../types/base-types";
+import ChakraLinkExtendReactRouterLink from "../../../../components/Chakra-LInk-Extend-React-Router-Link";
 
 
 export default (props: NavLinkProps) => {
   const { children, to, ...otherProps } = props;
 
   return (
-    <Box
-      as={"a"}
-      href={to}
+    <ChakraLinkExtendReactRouterLink
+      to={to}
       px={2}
       py={1}
       rounded={"md"}
@@ -22,6 +22,6 @@ export default (props: NavLinkProps) => {
       
     >
       {children}
-    </Box>
+    </ChakraLinkExtendReactRouterLink>
   );
 };
