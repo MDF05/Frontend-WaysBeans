@@ -18,6 +18,8 @@ import {
 import { adminApi } from "../../../../lib/api-v1";
 import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
 import { BarChartBase } from "./BarChartBase";
+import { BarChartWeekly } from "./BarChartWeekly";
+import { BarChartHourly } from "./BarChartBaseHourly";
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
 
@@ -222,12 +224,16 @@ export default function AdminAnalytics(): React.ReactNode {
           borderColor={borderCol}
           p={4}
           backdropFilter="blur(8px)"
-          overflow={"scroll"}
+          overflowX="auto"
+          overflowY="hidden"
+          maxWidth="100%"
         >
           <Heading size="sm" mb={2} color="brand.espresso">
             Hourly Sales
           </Heading>
-          <BarChartBase data={hourly} height={320} accent="#7B3F00" />
+          <Box minWidth="1200px" width="max-content">
+            <BarChartHourly data={hourly} height={320} accent="#7B3F00" />
+          </Box>
         </Box>
         <Box
           bg={cardBg}
@@ -240,7 +246,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Weekday Sales
           </Heading>
-          <BarChartBase data={weekday} height={220} accent="#A0522D" />
+          <BarChartWeekly data={weekday} height={220} accent="#A0522D" />
         </Box>
         <Box
           bg={cardBg}
@@ -253,7 +259,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Last 8 Weeks
           </Heading>
-          <BarChartBase data={weekly8} height={220} accent="#B5651D" />
+          <BarChartWeekly data={weekly8} height={220} accent="#B5651D" />
         </Box>
       </Grid>
     </VStack>

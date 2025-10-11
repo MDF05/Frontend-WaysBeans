@@ -2,8 +2,8 @@ import { Box } from "@chakra-ui/react";
 import { DataPoint } from "./BarChartTopProducts"; // DataPoint is imported from here
 
 // Define constant coordinate system values
-const BAR_WIDTH = 10;
-const BAR_GAP = 5;
+const BAR_WIDTH = 50;
+const BAR_GAP = 10;
 const TOTAL_BAR_UNIT = BAR_WIDTH + BAR_GAP; // 15 units per bar/gap set
 const PADDING_X = 5; // Left and right padding for the chart content
 const CHART_TOP = 15; // Y-coordinate for the top of the bar area (space for value labels)
