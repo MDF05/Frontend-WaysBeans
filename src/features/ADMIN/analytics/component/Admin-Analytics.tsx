@@ -251,6 +251,24 @@ export default function AdminAnalytics(): React.ReactNode {
         </GridItem>
       </Grid>
 
+      <Box
+        bg={cardBg}
+        borderRadius="lg"
+        border="1px solid"
+        borderColor={borderCol}
+        p={4}
+        backdropFilter="blur(8px)"
+      >
+        <Heading size="sm" mb={2} color="brand.espresso">
+          Top Products
+        </Heading>
+        <BarChart
+          data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
+          height={300}
+          accent="#6F4E37"
+          key={"chart-2"}
+        />
+      </Box>
       <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
         <Box
           bg={cardBg}
@@ -265,24 +283,7 @@ export default function AdminAnalytics(): React.ReactNode {
           </Heading>
           <BarChart data={serverSeries} height={300} accent="#8B4513" />
         </Box>
-        <Box
-          bg={cardBg}
-          borderRadius="lg"
-          border="1px solid"
-          borderColor={borderCol}
-          p={4}
-          backdropFilter="blur(8px)"
-        >
-          <Heading size="sm" mb={2} color="brand.espresso">
-            Top Products
-          </Heading>
-          <BarChart
-            data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
-            height={300}
-            accent="#6F4E37"
-            key={"chart-2"}
-          />
-        </Box>
+
         <Box
           bg={cardBg}
           borderRadius="lg"
