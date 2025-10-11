@@ -39,7 +39,7 @@ export function BarChartTopProducts({
       width="100%"
       height={height}
       // Dynamic viewBox ensures the chart scales to fit all data points
-      viewBox={`-10 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
+      viewBox={`-20 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
       preserveAspectRatio="xMinYMid meet"
     >
       {/* Map data points to bars */}
