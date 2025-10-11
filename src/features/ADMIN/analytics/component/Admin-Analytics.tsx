@@ -212,7 +212,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="md" mb={2} color="brand.espresso">
             Sales Overview
           </Heading>
-          <BarChartBase data={serverSeries} height={300} accent="#8B4513" />
+          <BarChartBase data={serverSeries} height={320} accent="#8B4513" />
         </Box>
 
         <Box
@@ -222,11 +222,12 @@ export default function AdminAnalytics(): React.ReactNode {
           borderColor={borderCol}
           p={4}
           backdropFilter="blur(8px)"
+          overflow={"scroll"}
         >
           <Heading size="sm" mb={2} color="brand.espresso">
             Hourly Sales
           </Heading>
-          <BarChartBase data={hourly} height={220} accent="#7B3F00" />
+          <BarChartBase data={hourly} height={320} accent="#7B3F00" />
         </Box>
         <Box
           bg={cardBg}
