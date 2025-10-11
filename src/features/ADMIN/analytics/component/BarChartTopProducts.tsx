@@ -15,9 +15,12 @@ export function BarChartTopProducts({
   accent?: string;
 }) {
   const max = Math.max(...data.map((d) => d.value), 1);
-  const barW = 120 / data.length + 50; // Reserve space for text labels
-  const chartHeight = 40; // Reduced to make room for value labels above bars
-  const chartStartY = 40; // Start chart lower to make room for value labels
+  const barSpacing = 5; // jarak antar bar
+  const margin = 5; // margin kiri & kanan
+  const availableWidth = 100 - margin * 2; // total area chart setelah margin
+  const barW = (availableWidth - barSpacing * (data.length - 1)) / data.length; // lebar tiap bar
+  const chartHeight = 40;
+  const chartStartY = 40;
 
   return (
     <Box
@@ -30,22 +33,25 @@ export function BarChartTopProducts({
       <rect x={0} y={0} width={100} height={100} fill="transparent" />
       {data.map((d, i) => {
         const h = (d.value / max) * chartHeight;
-        const x = i * barW + barW * 0.1;
-        const w = barW * 0.8;
+        const x = margin + i * (barW + barSpacing); // posisi mulai dari kiri + margin
         const y = chartStartY + chartHeight - h;
+
         return (
           <g key={d.label}>
+            {/* Bar */}
             <rect
               x={x}
               y={y}
-              width={w}
+              width={barW}
               height={h}
               rx={0.5}
               fill={accent}
               opacity={0.85}
             />
+
+            {/* Label bawah */}
             <text
-              x={x + w / 2}
+              x={x + barW / 2}
               y={chartStartY + chartHeight + 8}
               textAnchor="middle"
               fontSize={4.5}
@@ -54,8 +60,10 @@ export function BarChartTopProducts({
             >
               {d.label}
             </text>
+
+            {/* Value di atas bar */}
             <text
-              x={x + w / 2}
+              x={x + barW / 2}
               y={y - 2}
               textAnchor="middle"
               fontSize={4}
