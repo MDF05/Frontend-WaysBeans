@@ -58,7 +58,7 @@ export function BarChartSalesOverview({
         as="svg"
         // Jika isScrollable true, atur lebar SVG minimal sesuai VIEW_BOX_WIDTH
         // Jika tidak, biarkan width: 100% (responsive)
-        width={isScrollable ? `${VIEW_BOX_WIDTH}px` : "100%"}
+        // width={isScrollable ? `${VIEW_BOX_WIDTH}px` : "100%"}
         height={height}
         viewBox={`0 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
         preserveAspectRatio={isScrollable ? "none" : "xMinYMid meet"} // Jangan preserve aspect ratio jika scrollable

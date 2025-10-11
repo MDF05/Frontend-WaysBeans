@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   VStack,
   Spinner,
+  Flex,
 } from "@chakra-ui/react";
 import { adminApi } from "../../../../lib/api-v1";
 import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
@@ -78,7 +79,13 @@ export default function AdminAnalytics(): React.ReactNode {
   const kpis = serverKpis;
 
   return (
-    <VStack spacing={8} p={{ base: 4, md: 8 }} align="stretch">
+    <VStack
+      spacing={8}
+      p={{ base: 4, md: 8 }}
+      align="stretch"
+      w={"10%"}
+      bg={"red"}
+    >
       <HStack justify="space-between">
         <Heading size="lg" color="brand.espresso">
           Analytics & Reports
@@ -109,7 +116,11 @@ export default function AdminAnalytics(): React.ReactNode {
       )}
       {error && <Text color="red.500">{error}</Text>}
 
-      <Grid templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }} gap={4}>
+      <Grid
+        templateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
+        gap={4}
+        width={"100%"}
+      >
         <GridItem>
           <Box
             bg={cardBg}
@@ -191,6 +202,7 @@ export default function AdminAnalytics(): React.ReactNode {
         borderColor={borderCol}
         p={4}
         backdropFilter="blur(8px)"
+        w={"10%"}
       >
         <Heading size="sm" mb={2} color="brand.espresso">
           Top Products
@@ -202,7 +214,7 @@ export default function AdminAnalytics(): React.ReactNode {
           key={"chart-2"}
         />
       </Box>
-      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
+      <Flex gap={4} w={"10%"} overflow={"auto"}>
         <Box
           bg={cardBg}
           borderRadius="lg"
@@ -262,7 +274,7 @@ export default function AdminAnalytics(): React.ReactNode {
           </Heading>
           <BarChartBase data={weekly8} height={220} accent="#B5651D" />
         </Box>
-      </Grid>
+      </Flex>
     </VStack>
   );
 }
