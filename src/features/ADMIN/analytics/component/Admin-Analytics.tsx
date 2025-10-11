@@ -16,79 +16,10 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import { adminApi } from "../../../../lib/api-v1";
+import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
+import { BarChartBase } from "./BarChartBase";
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
-
-interface DataPoint {
-  label: string;
-  value: number;
-}
-
-function BarChart({
-  data,
-  height = 160,
-  accent = "#8B4513",
-}: {
-  data: DataPoint[];
-  height?: number;
-  accent?: string;
-}) {
-  const max = Math.max(...data.map((d) => d.value), 1);
-  const barW = 120 / data.length + 6; // Reserve space for text labels
-  const chartHeight = 40; // Reduced to make room for value labels above bars
-  const chartStartY = 40; // Start chart lower to make room for value labels
-
-  return (
-    <Box
-      as="svg"
-      width="100%"
-      height={height}
-      viewBox="0 0 100 100"
-      preserveAspectRatio="xMidYMid meet"
-    >
-      <rect x={0} y={0} width={100} height={100} fill="transparent" />
-      {data.map((d, i) => {
-        const h = (d.value / max) * chartHeight;
-        const x = i * barW + barW * 0.1;
-        const w = barW * 0.8;
-        const y = chartStartY + chartHeight - h;
-        return (
-          <g key={d.label}>
-            <rect
-              x={x}
-              y={y}
-              width={w}
-              height={h}
-              rx={0.5}
-              fill={accent}
-              opacity={0.85}
-            />
-            <text
-              x={x + w / 2}
-              y={chartStartY + chartHeight + 8}
-              textAnchor="middle"
-              fontSize={4.5}
-              fill="#6F4E37"
-              fontWeight="500"
-            >
-              {d.label}
-            </text>
-            <text
-              x={x + w / 2}
-              y={y - 2}
-              textAnchor="middle"
-              fontSize={4}
-              fill="#8B4513"
-              fontWeight="600"
-            >
-              {d.value}
-            </text>
-          </g>
-        );
-      })}
-    </Box>
-  );
-}
 
 export default function AdminAnalytics(): React.ReactNode {
   const [range, setRange] = useState<RangeKey>("daily");
@@ -262,7 +193,7 @@ export default function AdminAnalytics(): React.ReactNode {
         <Heading size="sm" mb={2} color="brand.espresso">
           Top Products
         </Heading>
-        <BarChart
+        <BarChartTopProducts
           data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
           height={300}
           accent="#6F4E37"
@@ -281,7 +212,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="md" mb={2} color="brand.espresso">
             Sales Overview
           </Heading>
-          <BarChart data={serverSeries} height={300} accent="#8B4513" />
+          <BarChartBase data={serverSeries} height={300} accent="#8B4513" />
         </Box>
 
         <Box
@@ -295,7 +226,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Hourly Sales
           </Heading>
-          <BarChart data={hourly} height={220} accent="#7B3F00" />
+          <BarChartBase data={hourly} height={220} accent="#7B3F00" />
         </Box>
         <Box
           bg={cardBg}
@@ -308,7 +239,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Weekday Sales
           </Heading>
-          <BarChart data={weekday} height={220} accent="#A0522D" />
+          <BarChartBase data={weekday} height={220} accent="#A0522D" />
         </Box>
         <Box
           bg={cardBg}
@@ -321,7 +252,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Last 8 Weeks
           </Heading>
-          <BarChart data={weekly8} height={220} accent="#B5651D" />
+          <BarChartBase data={weekly8} height={220} accent="#B5651D" />
         </Box>
       </Grid>
     </VStack>
