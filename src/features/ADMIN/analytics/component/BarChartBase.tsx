@@ -1,11 +1,11 @@
 import { Box } from "@chakra-ui/react";
 import { DataPoint } from "./BarChartTopProducts"; // DataPoint is imported from here
 
-// Define constant coordinate system values
-const BAR_WIDTH = 50;
-const BAR_GAP = 10;
-const TOTAL_BAR_UNIT = BAR_WIDTH + BAR_GAP; // 15 units per bar/gap set
-const PADDING_X = 5; // Left and right padding for the chart content
+// Define constant coordinate system values - optimized for monthly display
+const BAR_WIDTH = 30; // Reduced width to fit more bars for monthly data
+const BAR_GAP = 6; // Reduced gap for better space utilization
+const TOTAL_BAR_UNIT = BAR_WIDTH + BAR_GAP; // 36 units per bar/gap set
+const PADDING_X = 20; // Increased padding for better visual spacing
 const CHART_TOP = 15; // Y-coordinate for the top of the bar area (space for value labels)
 const CHART_BOTTOM = 80; // Y-coordinate for the bottom of the bar area (space for category labels)
 const CHART_HEIGHT = CHART_BOTTOM - CHART_TOP; // 65 units for bar height
@@ -24,7 +24,10 @@ export function BarChartBase({
   const dataCount = data.length || 1;
 
   // Calculate the total width needed for the viewBox based on the number of data points
-  const VIEW_BOX_WIDTH = dataCount * TOTAL_BAR_UNIT + PADDING_X;
+  // Ensure minimum width for proper display of monthly data (up to 31 days)
+  const MIN_WIDTH_FOR_MONTH = 31 * TOTAL_BAR_UNIT + PADDING_X * 2;
+  const CALCULATED_WIDTH = dataCount * TOTAL_BAR_UNIT + PADDING_X * 2;
+  const VIEW_BOX_WIDTH = Math.max(CALCULATED_WIDTH, MIN_WIDTH_FOR_MONTH);
   const VIEW_BOX_HEIGHT = 100;
 
   return (
@@ -32,9 +35,10 @@ export function BarChartBase({
       as="svg"
       width="100%"
       height={height}
+      minWidth={`${VIEW_BOX_WIDTH}px`} // Set minimum width to ensure all bars are visible
       // Dynamic viewBox ensures the chart scales to fit all data points
       viewBox={`0 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
-      preserveAspectRatio="xMinYMid meet"
+      preserveAspectRatio="none" // Changed to none to allow proper scaling
     >
       {/* Map data points to bars */}
       {data.map((d, i) => {

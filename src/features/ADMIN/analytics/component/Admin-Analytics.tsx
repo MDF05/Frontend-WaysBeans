@@ -14,6 +14,7 @@ import {
   useColorModeValue,
   VStack,
   Spinner,
+  Flex,
 } from "@chakra-ui/react";
 import { adminApi } from "../../../../lib/api-v1";
 import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
@@ -78,7 +79,12 @@ export default function AdminAnalytics(): React.ReactNode {
   const kpis = serverKpis;
 
   return (
-    <VStack spacing={8} p={{ base: 4, md: 8 }} align="stretch">
+    <VStack
+      spacing={8}
+      p={{ base: 2, md: 7 }}
+      align="stretch"
+      boxSizing="border-box"
+    >
       <HStack justify="space-between">
         <Heading size="lg" color="brand.espresso">
           Analytics & Reports
@@ -184,25 +190,12 @@ export default function AdminAnalytics(): React.ReactNode {
         </GridItem>
       </Grid>
 
-      <Box
-        bg={cardBg}
-        borderRadius="lg"
-        border="1px solid"
-        borderColor={borderCol}
-        p={4}
-        backdropFilter="blur(8px)"
+      <Flex
+        flexDirection={"column"}
+        width={"96vw"}
+        gap={"20px"}
+        boxSizing="border-box"
       >
-        <Heading size="sm" mb={2} color="brand.espresso">
-          Top Products
-        </Heading>
-        <BarChartTopProducts
-          data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
-          height={300}
-          accent="#6F4E37"
-          key={"chart-2"}
-        />
-      </Box>
-      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
         <Box
           bg={cardBg}
           borderRadius="lg"
@@ -211,10 +204,33 @@ export default function AdminAnalytics(): React.ReactNode {
           p={4}
           backdropFilter="blur(8px)"
         >
+          <Heading size="sm" mb={2} color="brand.espresso">
+            Top Products
+          </Heading>
+          <BarChartTopProducts
+            data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
+            height={300}
+            accent="#6F4E37"
+            key={"chart-2"}
+          />
+        </Box>
+        <Box
+          bg={cardBg}
+          borderRadius="lg"
+          border="1px solid"
+          borderColor={borderCol}
+          p={4}
+          backdropFilter="blur(8px)"
+          overflowX="hidden"
+          overflowY="hidden"
+          maxWidth="100%"
+        >
           <Heading size="md" mb={2} color="brand.espresso">
             Sales Overview
           </Heading>
-          <BarChartBase data={serverSeries} height={320} accent="#8B4513" />
+          <Box minWidth="1200px" width="max-content">
+            <BarChartBase data={serverSeries} height={320} accent="#8B4513" />
+          </Box>
         </Box>
 
         <Box
@@ -235,6 +251,9 @@ export default function AdminAnalytics(): React.ReactNode {
             <BarChartHourly data={hourly} height={320} accent="#7B3F00" />
           </Box>
         </Box>
+      </Flex>
+
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
         <Box
           bg={cardBg}
           borderRadius="lg"
