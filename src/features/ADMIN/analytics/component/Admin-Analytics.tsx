@@ -19,13 +19,8 @@ import {
 import { adminApi } from "../../../../lib/api-v1";
 import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
 import { BarChartBase } from "./BarChartBase";
-<<<<<<< HEAD
-import { BarChartSalesHourly } from "./BarChartSalesHourly";
-import { BarChartSalesOverview } from "./BarChartSalesOverview";
-=======
 import { BarChartWeekly } from "./BarChartWeekly";
 import { BarChartHourly } from "./BarChartBaseHourly";
->>>>>>> dev
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
 
@@ -84,19 +79,7 @@ export default function AdminAnalytics(): React.ReactNode {
   const kpis = serverKpis;
 
   return (
-    <VStack
-      spacing={8}
-<<<<<<< HEAD
-      p={{ base: 4, md: 8 }}
-      align="stretch"
-      w={"10%"}
-      bg={"red"}
-=======
-      p={{ base: 2, md: 7 }}
-      align="stretch"
-      boxSizing="border-box"
->>>>>>> dev
-    >
+    <VStack spacing={6} p={{ base: 4, md: 6 }} align="stretch">
       <HStack justify="space-between">
         <Heading size="lg" color="brand.espresso">
           Analytics & Reports
@@ -206,35 +189,12 @@ export default function AdminAnalytics(): React.ReactNode {
         </GridItem>
       </Grid>
 
-<<<<<<< HEAD
-      <Box
-        bg={cardBg}
-        borderRadius="lg"
-        border="1px solid"
-        borderColor={borderCol}
-        p={4}
-        backdropFilter="blur(8px)"
-        w={"10%"}
-      >
-        <Heading size="sm" mb={2} color="brand.espresso">
-          Top Products
-        </Heading>
-        <BarChartTopProducts
-          data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
-          height={300}
-          accent="#6F4E37"
-          key={"chart-2"}
-        />
-      </Box>
-      <Flex gap={4} w={"10%"} overflow={"auto"}>
-=======
       <Flex
         flexDirection={"column"}
-        width={"96vw"}
+        width={"96.5vw"}
         gap={"20px"}
         boxSizing="border-box"
       >
->>>>>>> dev
         <Box
           bg={cardBg}
           borderRadius="lg"
@@ -267,18 +227,9 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="md" mb={2} color="brand.espresso">
             Sales Overview
           </Heading>
-<<<<<<< HEAD
-          <BarChartSalesOverview
-            data={serverSeries}
-            height={320}
-            accent="#8B4513"
-            isScrollable={true}
-          />
-=======
           <Box minWidth="1200px" width="max-content">
             <BarChartBase data={serverSeries} height={320} accent="#8B4513" />
           </Box>
->>>>>>> dev
         </Box>
 
         <Box
@@ -295,13 +246,9 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Hourly Sales
           </Heading>
-<<<<<<< HEAD
-          <BarChartSalesHourly data={hourly} height={320} accent="#7B3F00" />
-=======
           <Box minWidth="1200px" width="max-content">
             <BarChartHourly data={hourly} height={320} accent="#7B3F00" />
           </Box>
->>>>>>> dev
         </Box>
       </Flex>
 
@@ -332,7 +279,7 @@ export default function AdminAnalytics(): React.ReactNode {
           </Heading>
           <BarChartWeekly data={weekly8} height={220} accent="#B5651D" />
         </Box>
-      </Flex>
+      </Grid>
     </VStack>
   );
 }
