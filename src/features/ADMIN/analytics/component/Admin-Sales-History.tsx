@@ -65,7 +65,13 @@ export default function AdminSalesHistory(): React.ReactNode {
   }, [range]);
 
   return (
-    <VStack spacing={6} p={{ base: 4, md: 8 }} align="stretch" h={"100vh"}>
+    <VStack
+      spacing={6}
+      p={{ base: 4, md: 8 }}
+      align="stretch"
+      h={"100vh"}
+      overflow={"auto"}
+    >
       <HStack justify="space-between">
         <Heading size="lg" color="brand.espresso">
           Sales History
