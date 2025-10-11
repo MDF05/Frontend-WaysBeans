@@ -108,7 +108,12 @@ export default function AdminSalesHistory(): React.ReactNode {
           </HStack>
         )}
         {error && <Text color="red.500">{error}</Text>}
-        <VStack align="stretch" spacing={3}>
+        <VStack
+          align="stretch"
+          spacing={3}
+          overflow={"auto"}
+          w={{ sm: "max-content", md: "full" }}
+        >
           {items.map((item) => (
             <HStack
               key={item.id}

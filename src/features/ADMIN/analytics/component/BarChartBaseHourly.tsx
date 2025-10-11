@@ -1,20 +1,16 @@
 import { Box } from "@chakra-ui/react";
+import { DataPoint } from "./BarChartTopProducts"; // DataPoint is imported from here
 
-export interface DataPoint {
-  label: string;
-  value: number;
-}
-
-// Define constant coordinate system values
-const BAR_WIDTH = 32; // Slightly wider bars for Top Products (fewer items)
-const BAR_GAP = 40; // Ditingkatkan dari 6 menjadi 10 untuk menambah jarak
-const TOTAL_BAR_UNIT = BAR_WIDTH + BAR_GAP; // 22 units per bar/gap set (sebelumnya 18)
-const PADDING_X = 5; // Left and right padding for the chart content
+// Define constant coordinate system values - optimized for 24 hours display
+const BAR_WIDTH = 35; // Reduced width to fit more bars
+const BAR_GAP = 8; // Reduced gap for better space utilization
+const TOTAL_BAR_UNIT = BAR_WIDTH + BAR_GAP; // 43 units per bar/gap set
+const PADDING_X = 20; // Increased padding for better visual spacing
 const CHART_TOP = 15; // Y-coordinate for the top of the bar area (space for value labels)
 const CHART_BOTTOM = 80; // Y-coordinate for the bottom of the bar area (space for category labels)
 const CHART_HEIGHT = CHART_BOTTOM - CHART_TOP; // 65 units for bar height
 
-export function BarChartTopProducts({
+export function BarChartHourly({
   data,
   height = 160,
   accent = "#8B4513",
@@ -28,9 +24,10 @@ export function BarChartTopProducts({
   const dataCount = data.length || 1;
 
   // Calculate the total width needed for the viewBox based on the number of data points
-  // PADDING_X * 2 ditambahkan di sini untuk memastikan ada padding di kanan juga,
-  // dan mencegah bar terakhir terlalu mepet ke tepi.
-  const VIEW_BOX_WIDTH = dataCount * TOTAL_BAR_UNIT + PADDING_X * 2;
+  // Ensure minimum width for proper display of all 24 hours
+  const MIN_WIDTH_FOR_24_HOURS = 24 * TOTAL_BAR_UNIT + PADDING_X * 2;
+  const CALCULATED_WIDTH = dataCount * TOTAL_BAR_UNIT + PADDING_X * 2;
+  const VIEW_BOX_WIDTH = Math.max(CALCULATED_WIDTH, MIN_WIDTH_FOR_24_HOURS);
   const VIEW_BOX_HEIGHT = 100;
 
   return (
@@ -38,14 +35,14 @@ export function BarChartTopProducts({
       as="svg"
       width="100%"
       height={height}
+      minWidth={`${VIEW_BOX_WIDTH}px`} // Set minimum width to ensure all bars are visible
       // Dynamic viewBox ensures the chart scales to fit all data points
-      viewBox={`-20 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
-      preserveAspectRatio="xMinYMid meet"
+      viewBox={`0 0 ${VIEW_BOX_WIDTH} ${VIEW_BOX_HEIGHT}`}
+      preserveAspectRatio="none" // Changed to none to allow proper scaling
     >
       {/* Map data points to bars */}
       {data.map((d, i) => {
         const barH = (d.value / max) * CHART_HEIGHT;
-        // PADDING_X ditambahkan agar bar pertama tidak menempel di kiri
         const barX = PADDING_X + i * TOTAL_BAR_UNIT;
         // Bars grow upward from the bottom of the chart area
         const barY = CHART_BOTTOM - barH;
@@ -73,17 +70,16 @@ export function BarChartTopProducts({
             >
               {d.value.toLocaleString()}
             </text>
-            {/* Product Name Label (below the bar) */}
+            {/* Category Label (below the bar) */}
             <text
               x={barX + BAR_WIDTH / 2}
               y={CHART_BOTTOM + 8} // Position 8 units below the chart bottom
               textAnchor="middle"
-              fontSize={5} // Dikecilkan dari 6 menjadi 5 untuk memberi ruang lebih
+              fontSize={7}
               fill="#6F4E37"
               fontWeight="500"
             >
-              {/* Truncate long labels to fit better on small screens */}
-              {d.label.length > 15 ? d.label.substring(0, 13) + "..." : d.label}
+              {d.label}
             </text>
           </g>
         );

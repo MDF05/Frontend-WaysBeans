@@ -1,6 +1,20 @@
 "use client";
 
-import { Box, Flex, Avatar, Button, Menu, MenuButton, MenuList, MenuItem, MenuDivider, Stack, Image, Grid, useDisclosure } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Avatar,
+  Button,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
+  MenuDivider,
+  Stack,
+  Image,
+  Grid,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 import waysbeanslogo from "../../../../assets/image/Frame.png";
 import avatarImage from "../../../../assets/image/profile.png";
@@ -21,49 +35,120 @@ export default function BaseLayout() {
 
   return (
     <Grid>
-      <ToastContainer style={{ zIndex: 100000 }} autoClose={2000} limit={1}></ToastContainer>
+      <ToastContainer
+        style={{ zIndex: 100000 }}
+        autoClose={2000}
+        limit={1}
+      ></ToastContainer>
       <CartModal isOpen={isOpen} onClose={onClose}></CartModal>
-      <Box bg={"brand.navbar"} px={4} zIndex={1000} position={"fixed"} boxShadow = "2px 2px 5px grey"  width={"100%"} _dark={{bg : "brand.darkTheme",  boxShadow : "2px 2px 5px white"}}>
+      <Box
+        bg={"brand.navbar"}
+        px={4}
+        zIndex={1000}
+        position={"fixed"}
+        boxShadow="2px 2px 5px grey"
+        width={"100%"}
+        _dark={{ bg: "brand.darkTheme", boxShadow: "2px 2px 5px white" }}
+      >
         <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
           <Box>
-            <Image src={waysbeanslogo} width={"150px"} dropShadow={"5px 5px 5px black"} ></Image>
+            <Image
+              src={waysbeanslogo}
+              width={"150px"}
+              dropShadow={"5px 5px 5px black"}
+            ></Image>
           </Box>
 
           <Flex alignItems={"center"}>
             <Stack direction={"row"} spacing={7}>
-              {user?.role == "ADMIN" && (
-
-                <>
-          <NavLink to="/" color={"brand.default"} _hover={{ bg: "brand.bgYoung" }} display={{ base: "none", md: "flex" }}>
+              <NavLink
+                to="/"
+                color={"brand.default"}
+                _hover={{ bg: "brand.bgYoung" }}
+                display={{ base: "none", md: "flex" }}
+              >
                 Home
               </NavLink>
-                  <NavLink to="/admin/product" color={pathname == "/product" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
+              {user?.role == "ADMIN" && (
+                <>
+                  <NavLink
+                    to="/admin/product"
+                    color={
+                      pathname == "/product"
+                        ? "brand.active"
+                        : "brand.baseColor"
+                    }
+                    _hover={{ bg: "brand.bgYoung" }}
+                  >
                     Product
                   </NavLink>
-                  <NavLink to="/admin/analytics" color={pathname == "/admin/analytics" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
+                  <NavLink
+                    to="/admin/analytics"
+                    color={
+                      pathname == "/admin/analytics"
+                        ? "brand.active"
+                        : "brand.baseColor"
+                    }
+                    _hover={{ bg: "brand.bgYoung" }}
+                  >
                     Analytics
                   </NavLink>
-                  <NavLink to="/admin/history" color={pathname == "/admin/history" ? "brand.active" : "brand.baseColor"} _hover={{ bg: "brand.bgYoung" }}>
+                  <NavLink
+                    to="/admin/history"
+                    color={
+                      pathname == "/admin/history"
+                        ? "brand.active"
+                        : "brand.baseColor"
+                    }
+                    _hover={{ bg: "brand.bgYoung" }}
+                  >
                     History
                   </NavLink>
                 </>
               )}
 
               {user?.role == "USER" && (
-                <ChakraLinkExtendReactRouterLink to="/" color={pathname == "/" ? "brand.active" : "brand.baseColor"} gap={"5px"} onClick={onOpen}>
-                  <IconBadgeCart color={pathname == "/" ? "brand.active" : "brand.baseColor"}></IconBadgeCart>
+                <ChakraLinkExtendReactRouterLink
+                  to="/"
+                  color={pathname == "/" ? "brand.active" : "brand.baseColor"}
+                  gap={"5px"}
+                  onClick={onOpen}
+                >
+                  <IconBadgeCart
+                    color={pathname == "/" ? "brand.active" : "brand.baseColor"}
+                  ></IconBadgeCart>
                 </ChakraLinkExtendReactRouterLink>
               )}
 
               <Menu>
-                <MenuButton as={Button} rounded={"full"} variant={"link"} cursor={"pointer"} minW={0}>
-                  <Avatar size={"sm"} src={profile?.profile?.content?.profile?.imageUrl ?? avatarImage} border={"1px solid black"} />
+                <MenuButton
+                  as={Button}
+                  rounded={"full"}
+                  variant={"link"}
+                  cursor={"pointer"}
+                  minW={0}
+                >
+                  <Avatar
+                    size={"sm"}
+                    src={
+                      profile?.profile?.content?.profile?.imageUrl ??
+                      avatarImage
+                    }
+                    border={"1px solid black"}
+                  />
                 </MenuButton>
                 <MenuList alignItems={"center"}>
                   <MenuItemUser></MenuItemUser>
                   <MenuDivider />
                   <MenuItem _hover={{ bg: "brand.bgYoung" }}>
-                    <ChakraLinkExtendReactRouterLink to="/" width={"100%"} display={"flex"} justifyContent={"start"} height={"100%"} _hover={{ bg: "brand.bgYoung" }}>
+                    <ChakraLinkExtendReactRouterLink
+                      to="/"
+                      width={"100%"}
+                      display={"flex"}
+                      justifyContent={"start"}
+                      height={"100%"}
+                      _hover={{ bg: "brand.bgYoung" }}
+                    >
                       Home
                     </ChakraLinkExtendReactRouterLink>
                   </MenuItem>

@@ -19,8 +19,13 @@ import {
 import { adminApi } from "../../../../lib/api-v1";
 import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
 import { BarChartBase } from "./BarChartBase";
+<<<<<<< HEAD
 import { BarChartSalesHourly } from "./BarChartSalesHourly";
 import { BarChartSalesOverview } from "./BarChartSalesOverview";
+=======
+import { BarChartWeekly } from "./BarChartWeekly";
+import { BarChartHourly } from "./BarChartBaseHourly";
+>>>>>>> dev
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
 
@@ -81,10 +86,16 @@ export default function AdminAnalytics(): React.ReactNode {
   return (
     <VStack
       spacing={8}
+<<<<<<< HEAD
       p={{ base: 4, md: 8 }}
       align="stretch"
       w={"10%"}
       bg={"red"}
+=======
+      p={{ base: 2, md: 7 }}
+      align="stretch"
+      boxSizing="border-box"
+>>>>>>> dev
     >
       <HStack justify="space-between">
         <Heading size="lg" color="brand.espresso">
@@ -195,6 +206,7 @@ export default function AdminAnalytics(): React.ReactNode {
         </GridItem>
       </Grid>
 
+<<<<<<< HEAD
       <Box
         bg={cardBg}
         borderRadius="lg"
@@ -215,6 +227,14 @@ export default function AdminAnalytics(): React.ReactNode {
         />
       </Box>
       <Flex gap={4} w={"10%"} overflow={"auto"}>
+=======
+      <Flex
+        flexDirection={"column"}
+        width={"96vw"}
+        gap={"20px"}
+        boxSizing="border-box"
+      >
+>>>>>>> dev
         <Box
           bg={cardBg}
           borderRadius="lg"
@@ -223,15 +243,42 @@ export default function AdminAnalytics(): React.ReactNode {
           p={4}
           backdropFilter="blur(8px)"
         >
+          <Heading size="sm" mb={2} color="brand.espresso">
+            Top Products
+          </Heading>
+          <BarChartTopProducts
+            data={topProducts.map((p) => ({ label: p.name, value: p.qty }))}
+            height={300}
+            accent="#6F4E37"
+            key={"chart-2"}
+          />
+        </Box>
+        <Box
+          bg={cardBg}
+          borderRadius="lg"
+          border="1px solid"
+          borderColor={borderCol}
+          p={4}
+          backdropFilter="blur(8px)"
+          overflowX="hidden"
+          overflowY="hidden"
+          maxWidth="100%"
+        >
           <Heading size="md" mb={2} color="brand.espresso">
             Sales Overview
           </Heading>
+<<<<<<< HEAD
           <BarChartSalesOverview
             data={serverSeries}
             height={320}
             accent="#8B4513"
             isScrollable={true}
           />
+=======
+          <Box minWidth="1200px" width="max-content">
+            <BarChartBase data={serverSeries} height={320} accent="#8B4513" />
+          </Box>
+>>>>>>> dev
         </Box>
 
         <Box
@@ -241,13 +288,24 @@ export default function AdminAnalytics(): React.ReactNode {
           borderColor={borderCol}
           p={4}
           backdropFilter="blur(8px)"
-          overflow={"scroll"}
+          overflowX="auto"
+          overflowY="hidden"
+          maxWidth="100%"
         >
           <Heading size="sm" mb={2} color="brand.espresso">
             Hourly Sales
           </Heading>
+<<<<<<< HEAD
           <BarChartSalesHourly data={hourly} height={320} accent="#7B3F00" />
+=======
+          <Box minWidth="1200px" width="max-content">
+            <BarChartHourly data={hourly} height={320} accent="#7B3F00" />
+          </Box>
+>>>>>>> dev
         </Box>
+      </Flex>
+
+      <Grid templateColumns={{ base: "1fr", md: "1fr 1fr" }} gap={4}>
         <Box
           bg={cardBg}
           borderRadius="lg"
@@ -259,7 +317,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Weekday Sales
           </Heading>
-          <BarChartBase data={weekday} height={220} accent="#A0522D" />
+          <BarChartWeekly data={weekday} height={220} accent="#A0522D" />
         </Box>
         <Box
           bg={cardBg}
@@ -272,7 +330,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Last 8 Weeks
           </Heading>
-          <BarChartBase data={weekly8} height={220} accent="#B5651D" />
+          <BarChartWeekly data={weekly8} height={220} accent="#B5651D" />
         </Box>
       </Flex>
     </VStack>
