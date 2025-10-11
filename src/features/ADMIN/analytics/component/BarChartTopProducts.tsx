@@ -24,7 +24,7 @@ export function BarChartTopProducts({
       as="svg"
       width="100%"
       height={height}
-      viewBox="100 0 100 100"
+      viewBox="200 0 100 100"
       preserveAspectRatio="xMidYMid meet"
     >
       <rect x={0} y={0} width={100} height={100} fill="transparent" />
