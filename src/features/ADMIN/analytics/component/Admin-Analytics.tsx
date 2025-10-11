@@ -18,6 +18,8 @@ import {
 import { adminApi } from "../../../../lib/api-v1";
 import { BarChartTopProducts, DataPoint } from "./BarChartTopProducts";
 import { BarChartBase } from "./BarChartBase";
+import { BarChartSalesHourly } from "./BarChartSalesHourly";
+import { BarChartSalesOverview } from "./BarChartSalesOverview";
 
 type RangeKey = "daily" | "weekly" | "monthly" | "yearly";
 
@@ -212,7 +214,12 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="md" mb={2} color="brand.espresso">
             Sales Overview
           </Heading>
-          <BarChartBase data={serverSeries} height={320} accent="#8B4513" />
+          <BarChartSalesOverview
+            data={serverSeries}
+            height={320}
+            accent="#8B4513"
+            isScrollable={true}
+          />
         </Box>
 
         <Box
@@ -227,7 +234,7 @@ export default function AdminAnalytics(): React.ReactNode {
           <Heading size="sm" mb={2} color="brand.espresso">
             Hourly Sales
           </Heading>
-          <BarChartBase data={hourly} height={320} accent="#7B3F00" />
+          <BarChartSalesHourly data={hourly} height={320} accent="#7B3F00" />
         </Box>
         <Box
           bg={cardBg}
