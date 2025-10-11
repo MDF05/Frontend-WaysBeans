@@ -7,7 +7,7 @@ export interface DataPoint {
 
 // Define constant coordinate system values
 const BAR_WIDTH = 12; // Slightly wider bars for Top Products (fewer items)
-const BAR_GAP = 10; // Ditingkatkan dari 6 menjadi 10 untuk menambah jarak
+const BAR_GAP = 100; // Ditingkatkan dari 6 menjadi 10 untuk menambah jarak
 const TOTAL_BAR_UNIT = BAR_WIDTH + BAR_GAP; // 22 units per bar/gap set (sebelumnya 18)
 const PADDING_X = 5; // Left and right padding for the chart content
 const CHART_TOP = 15; // Y-coordinate for the top of the bar area (space for value labels)
