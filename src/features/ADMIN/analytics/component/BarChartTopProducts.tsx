@@ -15,7 +15,7 @@ export function BarChartTopProducts({
   accent?: string;
 }) {
   const max = Math.max(...data.map((d) => d.value), 1);
-  const barW = 120 / data.length + 20; // Reserve space for text labels
+  const barW = 120 / data.length + 50; // Reserve space for text labels
   const chartHeight = 40; // Reduced to make room for value labels above bars
   const chartStartY = 40; // Start chart lower to make room for value labels
 
