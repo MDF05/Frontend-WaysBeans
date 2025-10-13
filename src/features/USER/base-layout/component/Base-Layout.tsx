@@ -79,6 +79,7 @@ export default function BaseLayout() {
                         : "brand.baseColor"
                     }
                     _hover={{ bg: "brand.bgYoung" }}
+                    display={{ lg: "flex", base: "none" }}
                   >
                     Product
                   </NavLink>
@@ -90,6 +91,7 @@ export default function BaseLayout() {
                         : "brand.baseColor"
                     }
                     _hover={{ bg: "brand.bgYoung" }}
+                    display={{ lg: "flex", base: "none" }}
                   >
                     Analytics
                   </NavLink>
@@ -101,6 +103,7 @@ export default function BaseLayout() {
                         : "brand.baseColor"
                     }
                     _hover={{ bg: "brand.bgYoung" }}
+                    display={{ lg: "flex", base: "none" }}
                   >
                     History
                   </NavLink>
@@ -142,9 +145,26 @@ export default function BaseLayout() {
                   <MenuDivider />
                   <MenuItem _hover={{ bg: "brand.bgYoung" }}>
                     <ChakraLinkExtendReactRouterLink
-                      to="/"
+                      to={`/profile/${profile?.profile?.content?.profile?.name}`}
                       width={"100%"}
                       display={"flex"}
+                      justifyContent={"start"}
+                      height={"100%"}
+                      _hover={{ bg: "brand.bgYoung" }}
+                    >
+                      Profile
+                    </ChakraLinkExtendReactRouterLink>
+                  </MenuItem>
+
+                  <MenuItem _hover={{ bg: "brand.bgYoung" }}>
+                    <ButtonLogout></ButtonLogout>
+                  </MenuItem>
+                  {/* <div> */}
+                  <MenuItem _hover={{ bg: "brand.bgYoung" }}>
+                    <ChakraLinkExtendReactRouterLink
+                      to={`/`}
+                      width={"100%"}
+                      display={{ md: "flex", sm: "none" }}
                       justifyContent={"start"}
                       height={"100%"}
                       _hover={{ bg: "brand.bgYoung" }}
@@ -152,22 +172,51 @@ export default function BaseLayout() {
                       Home
                     </ChakraLinkExtendReactRouterLink>
                   </MenuItem>
-                  <MenuItem _hover={{ bg: "transparent" }} p={"0"} m={"0"}>
-                    <ChakraLinkExtendReactRouterLink
-                      to="/profile/me"
-                      width={"100%"}
-                      display={"flex"}
-                      justifyContent={"start"}
-                      height={"100%"}
-                      _hover={{ bg: "brand.bgYoung" }}
-                      p={"5px 10px"}
-                    >
-                      Profile
-                    </ChakraLinkExtendReactRouterLink>
-                  </MenuItem>
-                  <MenuItem _hover={{ bg: "brand.bgYoung" }}>
-                    <ButtonLogout></ButtonLogout>
-                  </MenuItem>
+                  {user?.role == "ADMIN" && (
+                    <>
+                      <MenuItem _hover={{ bg: "brand.bgYoung" }}>
+                        <ChakraLinkExtendReactRouterLink
+                          to="/admin/product"
+                          width={"100%"}
+                          display={{ md: "flex", sm: "none" }}
+                          justifyContent={"start"}
+                          height={"100%"}
+                          _hover={{ bg: "brand.bgYoung" }}
+                        >
+                          Product
+                        </ChakraLinkExtendReactRouterLink>
+                      </MenuItem>
+                      <MenuItem _hover={{ bg: "brand.bgYoung" }}>
+                        <ChakraLinkExtendReactRouterLink
+                          to="/admin/analytics"
+                          color={
+                            pathname == "/admin/analytics"
+                              ? "brand.active"
+                              : "brand.baseColor"
+                          }
+                          _hover={{ bg: "brand.bgYoung" }}
+                          display={{ md: "none", sm: "flex" }}
+                        >
+                          Analytics
+                        </ChakraLinkExtendReactRouterLink>
+                      </MenuItem>
+                      <MenuItem _hover={{ bg: "brand.bgYoung" }}>
+                        <ChakraLinkExtendReactRouterLink
+                          to="/admin/history"
+                          color={
+                            pathname == "/admin/history"
+                              ? "brand.active"
+                              : "brand.baseColor"
+                          }
+                          _hover={{ bg: "brand.bgYoung" }}
+                          display={{ md: "none", sm: "flex" }}
+                        >
+                          History
+                        </ChakraLinkExtendReactRouterLink>
+                      </MenuItem>
+                    </>
+                  )}
+                  {/* </div> */}
                 </MenuList>
               </Menu>
             </Stack>

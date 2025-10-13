@@ -9,7 +9,14 @@ import {
   Divider,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FiMail, FiPhone, FiMapPin, FiInstagram, FiFacebook, FiTwitter } from "react-icons/fi";
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiInstagram,
+  FiFacebook,
+  FiTwitter,
+} from "react-icons/fi";
 import { motion } from "framer-motion";
 
 const MotionBox = motion(Box);
@@ -29,7 +36,14 @@ const AnimatedFooter: React.FC = () => {
       py={16}
     >
       {/* Animated Background Elements */}
-      <Box position="absolute" top="0" left="0" width="100%" height="100%" overflow="hidden">
+      <Box
+        position="absolute"
+        top="0"
+        left="0"
+        width="100%"
+        height="100%"
+        overflow="hidden"
+      >
         {/* Rising Steam */}
         {[...Array(12)].map((_, i) => (
           <MotionBox
@@ -117,10 +131,11 @@ const AnimatedFooter: React.FC = () => {
                 maxW="400px"
                 lineHeight="1.6"
               >
-                Crafting the perfect coffee experience with premium beans sourced from the world's finest coffee regions. 
-                Every cup tells a story of passion, quality, and dedication.
+                Crafting the perfect coffee experience with premium beans
+                sourced from the world's finest coffee regions. Every cup tells
+                a story of passion, quality, and dedication.
               </Text>
-              
+
               {/* Social Links */}
               <HStack spacing={4}>
                 {[
@@ -156,13 +171,9 @@ const AnimatedFooter: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
+              w={"full"}
             >
-              <Text
-                fontSize="xl"
-                fontWeight="bold"
-                color="brand.latte"
-                mb={2}
-              >
+              <Text fontSize="xl" fontWeight="bold" color="brand.latte" mb={2}>
                 Quick Links
               </Text>
               {[
@@ -195,27 +206,27 @@ const AnimatedFooter: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
+              w={"full"}
             >
-              <Text
-                fontSize="xl"
-                fontWeight="bold"
-                color="brand.latte"
-                mb={2}
-              >
+              <Text fontSize="xl" fontWeight="bold" color="brand.latte" mb={2}>
                 Contact Us
               </Text>
-              
-              <VStack align={{ base: "center", lg: "start" }} spacing={3}>
+
+              <VStack
+                align={{ base: "center", lg: "start" }}
+                spacing={3}
+                display={"flex"}
+              >
                 <HStack spacing={3}>
                   <FiMail color={linkColor} />
                   <Text color={textColor}>hello@waysbeans.com</Text>
                 </HStack>
-                
+
                 <HStack spacing={3}>
                   <FiPhone color={linkColor} />
                   <Text color={textColor}>+1 (555) 123-4567</Text>
                 </HStack>
-                
+
                 <HStack spacing={3} align="start">
                   <FiMapPin color={linkColor} style={{ marginTop: "2px" }} />
                   <Text color={textColor} maxW="200px">
@@ -239,7 +250,7 @@ const AnimatedFooter: React.FC = () => {
             <Text color={textColor} fontSize="sm">
               © 2024 WaysBeans. All rights reserved. Crafted with ☕ and ❤️
             </Text>
-            
+
             <HStack spacing={6} fontSize="sm">
               <Link href="#" color={textColor} _hover={{ color: linkColor }}>
                 Privacy Policy
